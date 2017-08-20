@@ -6,7 +6,6 @@ const MS_IN_MINUTE = 60 * MS_IN_SECONDE;
 let isLooping = isPaused = false;
 let dateFinChrono = 0;
 let tempsRestant = 0;
-let timer = 0;
 let play = {};
 let stop = {};
 let nextStep = {};
@@ -22,6 +21,11 @@ let inBreak = false;
 let cycle = 0;
 let notification;
 let alertAudio = new Audio('audio/alert.wav');
+
+function mainLoop() {
+	clock();
+	if(isLooping && !isPaused) timing();
+}
 
 function showClock() {
 	for(i = 0; i < 3; i++) clocksF[i].show();
@@ -54,7 +58,6 @@ function switchPlay() {
 		clock(dateFinChrono, clocksF);
 		showClock();
 		play.text('Pause');
-		timer = setTimeout(launchTimer, tempsRestant % MS_IN_SECONDE);
 		isLooping = true;
 	}
 	else if(isPaused) {
@@ -62,12 +65,10 @@ function switchPlay() {
 		timing();
 		clock(dateFinChrono, clocksF);
 		showClock();
-		timer = setTimeout(launchTimer, tempsRestant % MS_IN_SECONDE);
 		isPaused = false;
 		play.text('Pause');
 	}
 	else {
-		clearInterval(timer);
 		timing();
 		hideClock();
 		isPaused = true;
@@ -76,7 +77,6 @@ function switchPlay() {
 }
 
 function stopTimer() {
-	clearInterval(timer);
 	isLooping = isPaused = inBreak = false;
 	tempsRestant = cycle = dateFinChrono = 0;
 	display.html(styleTime(0));
@@ -98,7 +98,6 @@ function goNextStepPre() {
 }
 
 function goNextStep() {
-	clearInterval(timer);
 	isPaused = true;
 	play.text('Play');
 	alertAudio.play();
@@ -121,12 +120,6 @@ function goNextStep() {
 		switchPlay()
 		notification.close();
 	}
-}
-
-function launchTimer() {
-	tempsRestant = (dateFinChrono - Date.now());
-	display.html(styleTime(tempsRestant));
-	timer = setInterval(timing, MS_IN_SECONDE);
 }
 
 function styleTime(time = 0) {
@@ -152,7 +145,12 @@ function timing() {
 	if (inBreak) staminaBar.animate({width: (100 - tmp)+'%'}, 250);
 	else staminaBar.animate({width: tmp+'%'}, 250);
 
-	if(cycle == 3 && inBreak) staminaBar.css('background-color', 'rgb(' + (255*tmp/100) + ', ' + (128*(100-tmp)/100) + ', 0)');
+	if(cycle == 3 && inBreak) {
+		if (tmp >= 75) staminaBar.css('background-color', 'rgb(255, ' + (128*(100-tmp)/25) + ', 0)');
+		else if (tmp >= 50) staminaBar.css('background-color', 'rgb(255, ' + (128 + 128*(75-tmp)/25) + ', 0)');
+		else if (tmp >= 25) staminaBar.css('background-color', 'rgb(' + (255 - 128*(50-tmp)/25) + ', ' + (255 - 128*(50-tmp)/25) + ', 0)');
+		else  staminaBar.css('background-color', 'rgb(' + (128 - 128*(25-tmp)/25) + ', 128, 0)');
+	}
 	else switch(cycle) {
 		case 0:
 			if(inBreak) staminaBar.css('background-color', 'rgb(128, 128, 0)');

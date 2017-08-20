@@ -23,7 +23,7 @@ $(document).ready(function(){
 	clocksF = [$('#hourF'), $('#minF'), $('#secF')];
 	hideClock();
 	for(i = 0; i < 3; i++) clocks[i].css({'height': '-=5%', 'width': '+=1px'});
-	setTimeout(function(){setInterval(clock, 1000)}, Date.now() % (MS_IN_SECONDE+1));
+	setTimeout(function(){setInterval(mainLoop, 1000)}, Date.now() % (MS_IN_SECONDE+1));
 	
 	play.click(switchPlay);
 	stop.click(stopTimer);
@@ -65,7 +65,6 @@ $(document).ready(function(){
 
 	$('body').keypress(function(event){
 		if(event.which == 32) {
-			clearInterval(timer);
 			switchPlay();
 		}
 	});
