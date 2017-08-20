@@ -3,6 +3,7 @@
 	top: 5vh;
 	height: 10vh;
 	width: 10vw;
+	font-size: 5vh;
 }
 
 #play {
@@ -14,8 +15,8 @@
 }
 
 #time {
-	left: 37.5vw;
-	width: 25vw;
+	left: 20vw;
+	width: 60vw;
 	font-size: 10vh;
 	text-align: center;
 }
@@ -41,4 +42,42 @@
 	position: fixed;
 	top: 35vh;
 	left: 5vw;
+}
+
+
+.clock {
+	position: fixed;
+	top: 35vh;
+	left: 47vw;
+	border: 4px solid black;
+	border-radius: 100%;
+	padding: 3vw;
+	text-align: center;
+}
+
+#hours {
+	position: absolute;
+	background-color: black;
+	width: 4px;
+	height: 25px;
+	margin: auto;
+	transform-origin: left top;
+}
+
+#min {
+	position: absolute;
+	background-color: black;
+	width: 2px;
+	height: 40px;
+	margin: auto;
+	transform-origin: left top;
+}
+
+#sec {
+	position: absolute;
+	background-color: red;
+	width: 1px;
+	height: 45px;
+	margin: auto;
+	transform-origin: left top;
 }

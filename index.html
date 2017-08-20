@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>Pomodoro</title>
+	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script src="js/jquery-3.2.1.min.js"></script>
 	<script src="js/function.js"></script>
@@ -18,6 +19,11 @@
 		Break Time (mn) : <input type="number" name="tBreak" min="0" value="10"><br>
 		Chill Time (mn) : <input type="number" name="tStop" min="0" value="30"><br>
 	</form>
+	<div class="clock">
+		<div id="hours"></div>
+		<div id="min"></div>
+		<div id="sec"></div>
+	</div>
 
 	<script src="js/core.js"></script>
 </body>
