@@ -1,24 +1,48 @@
-#play, #stop, #time  {
+#play, #stop, #time, #next  {
 	position: fixed;
-	top: 5vh;
 	height: 10vh;
 	width: 10vw;
 	font-size: 5vh;
+	text-align: center;
+	line-height: 10vh;
+	background-color: green;
 }
 
 #play {
+	top: 5vh;
 	left: 5vw;
 }
 
 #stop {
+	top: 5vh;
 	right: 5vw;
 }
 
+#next {
+	bottom: 5vh;
+	left: 44vw;
+	width: 12vw;
+	font-size: 4vh;
+}
+
+#play:hover {
+	cursor: wait;
+}
+
+#stop:hover {
+	cursor: not-allowed;
+}
+
+#next:hover {
+	cursor: e-resize;
+}
+
 #time {
+	top: 5vh;
 	left: 20vw;
 	width: 60vw;
 	font-size: 10vh;
-	text-align: center;
+	background-color: white;
 }
 
 .staminaBox {
@@ -27,15 +51,26 @@
 	left: 5vw;
 	height: 10vh;
 	width: 90vw;
+	text-align: center;
 	border: 1px solid;
 }
 
+.staminaText {
+	margin: 0;
+	padding: 0;
+	height: 10vh;
+	font-size: 10vh;
+	line-height: 10vh;
+}
+
 #staminaBar {
+	position: absolute;
 	top: 0;
 	left: 0;
 	height: 100%;
 	width: 100%;
 	background-color: green;
+	opacity: 0.8;
 }
 
 #setTime {

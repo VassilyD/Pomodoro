@@ -9,6 +9,7 @@ let tempsRestant = 0;
 let timer = 0;
 let play = {};
 let stop = {};
+let nextStep = {};
 let inputs = {};
 let display = {};
 let staminaBar = {};
@@ -46,7 +47,7 @@ function clock(time = Date.now(), clocksT = clocks) {
 	clocksT[2].css({ "transform": secRun });
 }
 
-function switchPlay(){
+function switchPlay() {
 	if(!isLooping) {
 		dateFinChrono = Date.now() + tWork;
 		timing();
@@ -74,14 +75,52 @@ function switchPlay(){
 	}
 }
 
-function stopTimer(){
+function stopTimer() {
 	clearInterval(timer);
 	isLooping = isPaused = inBreak = false;
 	tempsRestant = cycle = dateFinChrono = 0;
 	display.html(styleTime(0));
-	staminaBar.css('width', '100%');
+	staminaBar.css('background-color', 'green');
+	staminaBar.animate({width: '100%'}, 250);
 	play.text('Lancer');
 	hideClock();
+}
+
+function switchPhase(newTime = 0) {
+	tempsRestant = newTime;
+	display.html(styleTime(newTime));
+	inBreak = !inBreak;
+}
+
+function goNextStepPre() {
+	dateFinChrono = Date.now();
+	timing();
+}
+
+function goNextStep() {
+	clearInterval(timer);
+	isPaused = true;
+	play.text('Play');
+	alertAudio.play();
+	hideClock();
+	if(inBreak) {
+		switchPhase(tWork)
+		if(cycle < 3) cycle++;
+		else cycle = 0;
+		notification = new Notification('Yohohoho!', {body: 'Il est temps de retourner au travail!'});
+	}
+	else if(cycle < 3) {
+		switchPhase(tBreak)
+		notification = new Notification('Yohohoho!', {body: 'Il est temps de se détendre ' + Math.floor(tBreak / MS_IN_MINUTE) + 'mn!'});
+	}
+	else {
+		switchPhase(tStop)
+		notification = new Notification('Yohohoho!', {body: 'Il est temps de déconnecter!!!'});
+	}
+	notification.onclick = function(){
+		switchPlay()
+		notification.close();
+	}
 }
 
 function launchTimer() {
@@ -103,15 +142,6 @@ function styleTime(time = 0) {
 }
 
 function timing() {
-	// Q2 : Faut il déclarer mieux switchPhase(), qui n'est utile que dans timing(), ici ou bien en globale?
-	function switchPhase(newTime = 0) {
-		tempsRestant = newTime;
-		display.html(styleTime(newTime));
-		inBreak = !inBreak;
-		//timer = setTimeout(launchTimer, newTime % MS_IN_SECONDE);
-		//isPaused = false;
-		//play.text('Pause');
-	}
 	tempsRestant = (dateFinChrono - Date.now());
 	display.html(styleTime(tempsRestant));
 	$('title').text(styleTime(tempsRestant) + ' Pomodoro');
@@ -147,37 +177,7 @@ function timing() {
 			console.log('Ceci ne devrais pas arrivé!');
 	}
 
-	if(tempsRestant < 0) {
-		clearInterval(timer);
-		isPaused = true;
-		play.text('Play');
-		alertAudio.play();
-		hideClock();
-		if(inBreak) {
-			switchPhase(tWork)
-			if(cycle < 3) cycle++;
-			else cycle = 0;
-			notification = new Notification('Yohohoho!', {body: 'Il est temps de retourner au travail!'});
-			notification.onclick = function(){
-				switchPlay()
-				notification.close();
-			}
-		}
-		else if(cycle < 3) {
-			switchPhase(tBreak)
-			var notification = new Notification('Yohohoho!', {body: 'Il est temps de se détendre ' + Math.floor(tBreak / MS_IN_MINUTE) + 'mn!'});
-			notification.onclick = function(){
-				switchPlay()
-				notification.close();
-			}
-		}
-		else {
-			switchPhase(tStop)
-			var notification = new Notification('Yohohoho!', {body: 'Il est temps de déconnecter!!!'});
-			notification.onclick = function(){
-				switchPlay()
-				notification.close();
-			}
-		}
+	if(tempsRestant <= 0) {
+		goNextStep();
 	}
 }
