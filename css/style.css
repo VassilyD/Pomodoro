@@ -1,0 +1,44 @@
+#play, #stop, #time  {
+	position: fixed;
+	top: 5vh;
+	height: 10vh;
+	width: 10vw;
+}
+
+#play {
+	left: 5vw;
+}
+
+#stop {
+	right: 5vw;
+}
+
+#time {
+	left: 37.5vw;
+	width: 25vw;
+	font-size: 10vh;
+	text-align: center;
+}
+
+.staminaBox {
+	position: fixed;
+	top: 20vh;
+	left: 5vw;
+	height: 10vh;
+	width: 90vw;
+	border: 1px solid;
+}
+
+#staminaBar {
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background-color: green;
+}
+
+#setTime {
+	position: fixed;
+	top: 35vh;
+	left: 5vw;
+}
