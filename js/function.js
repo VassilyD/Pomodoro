@@ -12,6 +12,8 @@ let stop = {};
 let inputs = {};
 let display = {};
 let staminaBar = {};
+let clocks = [];
+let clocksF = [];
 let tWork = 20 * MS_IN_MINUTE;
 let tBreak = 10 * MS_IN_MINUTE;
 let tStop = 30 * MS_IN_MINUTE;
@@ -20,11 +22,36 @@ let cycle = 0;
 let notification;
 let alertAudio = new Audio('audio/alert.wav');
 
+function showClock() {
+	for(i = 0; i < 3; i++) clocksF[i].show();
+}
+
+function hideClock() {
+	for(i = 0; i < 3; i++) clocksF[i].hide();
+}
+
+function clock(time = Date.now(), clocksT = clocks) {
+	var d = new Date(time);
+	var h = d.getHours();
+	var m = d.getMinutes();
+	var s = d.getSeconds();
+	var hourDeg = h * 30 + (m / 2) - 180;
+	var hourRun = "rotate(" + hourDeg + "deg)";
+	clocksT[0].css({ "transform": hourRun});
+	var minDeg = m * 6 - 180;
+	var minRun = "rotate(" + minDeg + "deg)";
+	clocksT[1].css({ "transform" : minRun });
+	var secDeg = s * 6 - 180;
+	var secRun = "rotate(" + secDeg + "deg)";
+	clocksT[2].css({ "transform": secRun });
+}
 
 function switchPlay(){
 	if(!isLooping) {
 		dateFinChrono = Date.now() + tWork;
 		timing();
+		clock(dateFinChrono, clocksF);
+		showClock();
 		play.text('Pause');
 		timer = setTimeout(launchTimer, tempsRestant % MS_IN_SECONDE);
 		isLooping = true;
@@ -32,6 +59,8 @@ function switchPlay(){
 	else if(isPaused) {
 		dateFinChrono = Date.now() + tempsRestant;
 		timing();
+		clock(dateFinChrono, clocksF);
+		showClock();
 		timer = setTimeout(launchTimer, tempsRestant % MS_IN_SECONDE);
 		isPaused = false;
 		play.text('Pause');
@@ -39,6 +68,7 @@ function switchPlay(){
 	else {
 		clearInterval(timer);
 		timing();
+		hideClock();
 		isPaused = true;
 		play.text('Play');
 	}
@@ -51,6 +81,7 @@ function stopTimer(){
 	display.html(styleTime(0));
 	staminaBar.css('width', '100%');
 	play.text('Lancer');
+	hideClock();
 }
 
 function launchTimer() {
@@ -121,6 +152,7 @@ function timing() {
 		isPaused = true;
 		play.text('Play');
 		alertAudio.play();
+		hideClock();
 		if(inBreak) {
 			switchPhase(tWork)
 			if(cycle < 3) cycle++;

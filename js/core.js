@@ -18,17 +18,22 @@ $(document).ready(function(){
 		});
 	}
 
-
-	play.click(switchPlay);
-
-	stop.click(stopTimer);
+	clocks = [$('#hour'), $('#min'), $('#sec')];
+	clocksF = [$('#hourF'), $('#minF'), $('#secF')];
+	hideClock();
+	for(i = 0; i < 3; i++) clocks[i].css({'height': '-=5%', 'width': '+=1px'});
+	setInterval(clock, 1000);
 	
+	play.click(switchPlay);
+	stop.click(stopTimer);
+
 	$('input:first').change(function(){
 		if(!inBreak && isLooping) {
 			if(isPaused) dateFinChrono = Date.now() + tempsRestant;
 			dateFinChrono += inputs[0].value * MS_IN_MINUTE - tWork;
 			tWork = inputs[0].value * MS_IN_MINUTE;
 			timing();
+			clock(dateFinChrono, clocksF);
 		}
 		else {
 			tWork = inputs[0].value * MS_IN_MINUTE;
@@ -41,6 +46,7 @@ $(document).ready(function(){
 			dateFinChrono += inputs[1].value * MS_IN_MINUTE - tBreak;
 			tBreak = inputs[1].value * MS_IN_MINUTE;
 			timing();
+			clock(dateFinChrono, clocksF);
 		}
 		else tBreak = inputs[1].value * MS_IN_MINUTE;
 	});
@@ -50,6 +56,7 @@ $(document).ready(function(){
 			dateFinChrono += inputs[2].value * MS_IN_MINUTE - tStop;
 			tStop = inputs[2].value * MS_IN_MINUTE;
 			timing();
+			clock(dateFinChrono, clocksF);
 		}
 		else tStop = inputs[2].value * MS_IN_MINUTE;
 	});
