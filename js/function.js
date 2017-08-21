@@ -51,6 +51,7 @@ function clock(time = Date.now(), clocksT = clocks) {
 }
 
 function switchPlay() {
+	alertAudio.loop = false;
 	if(!isLooping) {
 		dateFinChrono = (tempsRestant == 0)?(Date.now() + tWork):(Date.now() + tempsRestant);
 		timing();
@@ -81,6 +82,7 @@ function stopTimer() {
 	display.html(styleTime(tWork));
 	staminaBar.css('background-color', 'green');
 	staminaBar.animate({width: '100%'}, 250);
+	alertAudio.loop = false;
 	play.text('Lancer');
 	hideClock();
 }
@@ -98,8 +100,11 @@ function goNextStepPre() {
 
 function goNextStep() {
 	isPaused = (isLooping)?true:false;
+	if(isLooping) {
+		alertAudio.play();
+		alertAudio.loop = true;
+	}
 	play.text('Play');
-	alertAudio.play();
 	hideClock();
 	if(inBreak) {
 		switchPhase(tWork)
