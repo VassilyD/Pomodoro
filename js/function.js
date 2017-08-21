@@ -3,7 +3,7 @@ const MS_IN_MINUTE = 60 * MS_IN_SECONDE;
 //const MS_IN_HOURS = 60 * MS_IN_MINUTE;
 
 // Q1 : Est-ce propre de déclarer et initialiser ainsi 2 variables (voir plus)?
-let isLooping = isPaused = false;
+let isLooping = isPaused = inBreak = false;
 let dateFinChrono = 0;
 let tempsRestant = 0;
 let play = {};
@@ -14,10 +14,9 @@ let display = {};
 let staminaBar = {};
 let clocks = [];
 let clocksF = [];
-let tWork = 20 * MS_IN_MINUTE;
-let tBreak = 10 * MS_IN_MINUTE;
+let tWork = 25 * MS_IN_MINUTE;
+let tBreak = 5 * MS_IN_MINUTE;
 let tStop = 30 * MS_IN_MINUTE;
-let inBreak = false;
 let cycle = 0;
 let notification;
 let alertAudio = new Audio('audio/alert.wav');
@@ -53,7 +52,7 @@ function clock(time = Date.now(), clocksT = clocks) {
 
 function switchPlay() {
 	if(!isLooping) {
-		dateFinChrono = Date.now() + tWork;
+		dateFinChrono = (tempsRestant == 0)?(Date.now() + tWork):(Date.now() + tempsRestant);
 		timing();
 		clock(dateFinChrono, clocksF);
 		showClock();
@@ -79,7 +78,7 @@ function switchPlay() {
 function stopTimer() {
 	isLooping = isPaused = inBreak = false;
 	tempsRestant = cycle = dateFinChrono = 0;
-	display.html(styleTime(0));
+	display.html(styleTime(tWork));
 	staminaBar.css('background-color', 'green');
 	staminaBar.animate({width: '100%'}, 250);
 	play.text('Lancer');
@@ -93,12 +92,12 @@ function switchPhase(newTime = 0) {
 }
 
 function goNextStepPre() {
-	dateFinChrono = Date.now();
+	dateFinChrono = Date.now() - MS_IN_MINUTE;
 	timing();
 }
 
 function goNextStep() {
-	isPaused = true;
+	isPaused = (isLooping)?true:false;
 	play.text('Play');
 	alertAudio.play();
 	hideClock();
@@ -141,7 +140,7 @@ function timing() {
 
 	var tmp = (!inBreak)?tWork:(cycle < 3)?tBreak:tStop;
 	tmp = 100 * tempsRestant / tmp;
-	tmp = (!isLooping || tmp > 100)?100:(tmp < 0)?0:tmp;
+	tmp = (tmp > 100)?100:(tmp < 0)?0:tmp;
 	if (inBreak) staminaBar.animate({width: (100 - tmp)+'%'}, 250);
 	else staminaBar.animate({width: tmp+'%'}, 250);
 

@@ -63,10 +63,10 @@ $(document).ready(function(){
 		else tStop = inputs[2].value * MS_IN_MINUTE;
 	});
 
-	$('body').keypress(function(event){
-		if(event.which == 32) {
-			switchPlay();
-		}
+	$('body').keydown(function(event){
+		if(event.which == 32 || event.which == 80) switchPlay();
+		else if(event.which == 78) goNextStepPre();
+		else if(event.which == 83) stopTimer();
 	});
 
 });
