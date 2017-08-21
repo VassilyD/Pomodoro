@@ -3,35 +3,34 @@
 <head>
 	<title>Pomodoro</title>
 	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script src="js/jquery-3.2.1.min.js"></script>
 	<script src="js/function.js"></script>
 </head>
 <body>
-	<div id="play">Lancer</div>
-	<div id="stop">STOP</div>
-	<div id="next">Next Step</div>
+	<div id="play"><i class="fa fa-play"></i></div>
+	<div id="stop"><i class="fa fa-stop"></i></div>
+	<div id="next"><i class="fa fa-fast-forward"></i></div>
 	<div id="time"></div>
+	<span class="staminaText">STAMINA</span>
 	<div class="staminaBox">
-		<span class="staminaText">STAMINA</span>
 		<div id="staminaBar"></div>
 	</div>
-	<form id='setTime'>
-		<div id="workSet">
-			<label for="tWork">Work :</label><br>
-			<input type="number" name="tWork" min="0" value="20"> min
-		</div>
+	<div id="workSet">
+		<label for="tWork">Work :</label><br>
+		<input type="number" name="tWork" min="0" value="20"> min
+	</div>
 
-		<div id="breakSet">
-			<label for="tBreak">Break :</label><br>
-			<input type="number" name="tBreak" min="0" value="10"> min
-		</div>
+	<div id="breakSet">
+		<label for="tBreak">Break :</label><br>
+		<input type="number" name="tBreak" min="0" value="10"> min
+	</div>
 
-		<div id="stopSet">
-			<label for="tStop">Chill :</label><br>
-			<input type="number" name="tStop" min="0" value="30"> min
-		</div>
-	</form>
+	<div id="stopSet">
+		<label for="tStop">Chill :</label><br>
+		<input type="number" name="tStop" min="0" value="30"> min
+	</div>
 	<div class="clock">
 		<div id="hour"></div>
 		<div id="min"></div>

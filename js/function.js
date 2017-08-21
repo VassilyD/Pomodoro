@@ -58,7 +58,7 @@ function switchPlay() {
 		timing();
 		clock(dateFinChrono, clocksF);
 		showClock();
-		play.text('Pause');
+		play.html('<i class="fa fa-pause">');
 		isLooping = true;
 	}
 	else if(isPaused) {
@@ -67,13 +67,13 @@ function switchPlay() {
 		clock(dateFinChrono, clocksF);
 		showClock();
 		isPaused = false;
-		play.text('Pause');
+		play.html('<i class="fa fa-pause">');
 	}
 	else {
 		timing();
 		hideClock();
 		isPaused = true;
-		play.text('Play');
+		play.html('<i class="fa fa-play">');
 	}
 }
 
@@ -85,7 +85,7 @@ function stopTimer() {
 	staminaBar.animate({width: '100%'}, 250);
 	alertAudio.loop = false;
 	nextStep.show();
-	play.text('Lancer');
+	play.html('<i class="fa fa-play">');
 	hideClock();
 }
 
@@ -102,7 +102,7 @@ function goNextStepPre() {
 
 function goNextStep() {
 	isPaused = (isLooping)?true:false;
-	play.text('Play');
+	play.html('<i class="fa fa-play">');
 	hideClock();
 
 	if(inBreak) {
