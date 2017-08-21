@@ -146,8 +146,8 @@ function timing() {
 
 	if(cycle == 3 && inBreak) {
 		if (tmp >= 75) staminaBar.css('background-color', 'rgb(255, ' + (128*(100-tmp)/25) + ', 0)');
-		else if (tmp >= 50) staminaBar.css('background-color', 'rgb(255, ' + (128 + 128*(75-tmp)/25) + ', 0)');
-		else if (tmp >= 25) staminaBar.css('background-color', 'rgb(' + (255 - 128*(50-tmp)/25) + ', ' + (255 - 128*(50-tmp)/25) + ', 0)');
+		else if (tmp >= 50) staminaBar.css('background-color', 'rgb(255, ' + (128 + 100*(75-tmp)/25) + ', 0)');
+		else if (tmp >= 25) staminaBar.css('background-color', 'rgb(' + (255 - 127*(50-tmp)/25) + ', ' + (228 - 100*(50-tmp)/25) + ', 0)');
 		else  staminaBar.css('background-color', 'rgb(' + (128 - 128*(25-tmp)/25) + ', 128, 0)');
 	}
 	else switch(cycle) {
@@ -157,13 +157,13 @@ function timing() {
 			break;
 
 		case 1:
-			if(inBreak) staminaBar.css('background-color', 'rgb(255, 255, 0)');
-			else staminaBar.css('background-color', 'rgb(' + (128 + 128*(100-tmp)/100) + ', ' + (128 + 128*(100-tmp)/100) + ', 0)');
+			if(inBreak) staminaBar.css('background-color', 'rgb(255, 228, 0)');
+			else staminaBar.css('background-color', 'rgb(' + (128 + 127*(100-tmp)/100) + ', ' + (128 + 100*(100-tmp)/100) + ', 0)');
 			break;
 
 		case 2:
 			if(inBreak) staminaBar.css('background-color', 'rgb(255, 128, 0)');
-			else staminaBar.css('background-color', 'rgb(255, ' + (255 - 128*(100-tmp)/100) + ', 0)');
+			else staminaBar.css('background-color', 'rgb(255, ' + (228 - 100*(100-tmp)/100) + ', 0)');
 			break;
 
 		case 3:
