@@ -163,10 +163,8 @@ function ProgressBarColor(tmp, colorD = [0, 0, 0], colorF = [0, 0, 0]) {
 // modifie la couleur de la barre de progression en fonction de l'avancement du chrono et du cycle
 function setProgressBarColor(tmp) {
 	if(cycle == 3 && inBreak) {
-		if (tmp >= 75) ProgressBarColor((tmp-75)*4, [255, 0, 0], [255, 128, 0]); // (tmp-75)*4 donne dans l'expression (100-tmp)/100 = (100-4*tmp+4*75)/100 = (400-4*tmp)/100 = 4*(100-tmp)/100 = (100-tmp)/25
-		else if (tmp >= 50) ProgressBarColor((tmp-50)*4, [255, 128, 0], [255, 228, 0]); // (tmp-50)*4 => (75-tmp)/25
-		else if (tmp >= 25) ProgressBarColor((tmp-25)*4, [255, 228, 0], [128, 128, 0]); // (tmp-25)*4 => (50-tmp)/25
-		else  ProgressBarColor(tmp*4, [128, 128, 0], [0, 128, 0]); // (tmp)*4 => (25-tmp)/25
+		var etape = Math.min(3, Math.floor(tmp/25));
+		ProgressBarColor((tmp-25*etape)*4, colorBar[etape+1], colorBar[etape]);
 	}
 	else ProgressBarColor(tmp, colorBar[cycle], colorBar[cycle+1]);
 }
