@@ -19,7 +19,7 @@ let tBreak = 5 * MS_IN_MINUTE;
 let tStop = 30 * MS_IN_MINUTE;
 let cycle = 0;
 let notification;
-let alertAudio = new Audio('audio/alert.wav');
+let alertAudio = new Audio('audio/servietsky.mp3');
 let colorBar = [[0, 128, 0], [128, 128, 0], [255, 228, 0], [255, 128, 0], [255, 0, 0]];
 
 // La seule vrai boucle ^^
