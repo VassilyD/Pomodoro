@@ -1,6 +1,6 @@
 const MS_IN_SECONDE = 1000;
 const MS_IN_MINUTE = 60 * MS_IN_SECONDE;
-//const MS_IN_HOURS = 60 * MS_IN_MINUTE;
+const ANIM_SPEED = 250;
 
 // Q1 : Est-ce propre de déclarer et initialiser ainsi 2 variables (voir plus)?
 let isLooping = isPaused = inBreak = false;
@@ -21,19 +21,24 @@ let cycle = 0;
 let notification;
 let alertAudio = new Audio('audio/alert.wav');
 
+// La seule vrai boucle ^^
 function mainLoop() {
 	clock();
 	if(isLooping && !isPaused) timing();
 }
 
+// Affiche l'horloge de fin de compteur
 function showClock() {
 	for(i = 0; i < 3; i++) clocksF[i].show();
 }
 
+// Cache l'horloge de fin de compteur
 function hideClock() {
 	for(i = 0; i < 3; i++) clocksF[i].hide();
 }
 
+// positionne les aiguilles de l'horloge selectionné en fonction de la date entrée
+// Merci Roxane!
 function clock(time = Date.now(), clocksT = clocks) {
 	var d = new Date(time);
 	var h = d.getHours();
@@ -50,6 +55,7 @@ function clock(time = Date.now(), clocksT = clocks) {
 	clocksT[2].css({ "transform": secRun });
 }
 
+// Switch entre décompte et pause. Sers aussi pour le lancement initiale
 function switchPlay() {
 	alertAudio.loop = false;
 	nextStep.show();
@@ -77,6 +83,7 @@ function switchPlay() {
 	}
 }
 
+// Arrete tout et réinitialise les variables
 function stopTimer() {
 	isLooping = isPaused = inBreak = false;
 	tempsRestant = cycle = dateFinChrono = 0;
@@ -100,6 +107,7 @@ function goNextStepPre() {
 	timing();
 }
 
+// Fais passer à l'étape suivante et le notifie
 function goNextStep() {
 	isPaused = (isLooping)?true:false;
 	play.html('<i class="fa fa-play">');
@@ -134,6 +142,7 @@ function goNextStep() {
 
 }
 
+// Renvoie une chaine de caractère du type 'MM : SS'
 function styleTime(time = 0) {
 	var minutes = Math.floor(time / MS_IN_MINUTE);
 	minutes = (minutes<0)?0:(minutes>=10)?minutes:('0' + minutes).slice(-2);
@@ -144,17 +153,8 @@ function styleTime(time = 0) {
 	return "" + minutes + " : " + secondes;
 }
 
-function timing() {
-	tempsRestant = (dateFinChrono - Date.now());
-	display.html(styleTime(tempsRestant));
-	$('title').text(styleTime(tempsRestant) + ' Pomodoro');
-
-	var tmp = (!inBreak)?tWork:(cycle < 3)?tBreak:tStop;
-	tmp = 100 * tempsRestant / tmp;
-	tmp = (tmp > 100)?100:(tmp < 0)?0:tmp;
-	if (inBreak) staminaBar.animate({width: (100 - tmp)+'%'}, 250);
-	else staminaBar.animate({width: tmp+'%'}, 250);
-
+// modifie la couleur de la barre de progression en fonction de l'avancement du chrono et du cycle
+function setProgressBarColor() {
 	if(cycle == 3 && inBreak) {
 		if (tmp >= 75) staminaBar.css('background-color', 'rgb(255, ' + (128*(100-tmp)/25) + ', 0)');
 		else if (tmp >= 50) staminaBar.css('background-color', 'rgb(255, ' + (128 + 100*(75-tmp)/25) + ', 0)');
@@ -184,6 +184,21 @@ function timing() {
 		default:
 			console.log('Ceci ne devrais pas arrivé!');
 	}
+}
+
+// Actualise le temps restant et la barre de progression
+function timing() {
+	tempsRestant = (dateFinChrono - Date.now());
+	display.html(styleTime(tempsRestant));
+	$('title').text(styleTime(tempsRestant) + ' Pomodoro');
+
+	var tmp = (!inBreak)?tWork:(cycle < 3)?tBreak:tStop;
+	tmp = 100 * tempsRestant / tmp;
+	tmp = (tmp > 100)?100:(tmp < 0)?0:tmp;
+	if (inBreak) staminaBar.animate({width: (100 - tmp)+'%'}, ANIM_SPEED);
+	else staminaBar.animate({width: tmp+'%'}, ANIM_SPEED);
+
+	setProgressBarColor();
 
 	if(tempsRestant <= 0) {
 		goNextStep();

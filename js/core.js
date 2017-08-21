@@ -29,6 +29,7 @@ $(document).ready(function(){
 	stop.click(stopTimer);
 	nextStep.click(goNextStepPre);
 
+	// Gestion des différents chronos
 	$('#workSet input').change(function(){
 		if(!inBreak && isLooping) {
 			if(isPaused) dateFinChrono = Date.now() + tempsRestant;
@@ -63,10 +64,11 @@ $(document).ready(function(){
 		else tStop = inputs[2].value * MS_IN_MINUTE;
 	});
 
+	// Gestion des raccourcis clavier
 	$('body').keydown(function(event){
-		if(event.which == 32 || event.which == 80) switchPlay();
-		else if(event.which == 78) goNextStepPre();
-		else if(event.which == 83) stopTimer();
+		if(event.which == 32 || event.which == 80) switchPlay(); // 'espace' et 'p'
+		else if(event.which == 78) goNextStepPre(); // 'n'
+		else if(event.which == 83) stopTimer(); // 's'
 	});
 
 });
