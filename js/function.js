@@ -40,10 +40,10 @@ function clock(time = Date.now(), clocksT = clocks) {
 	var h = d.getHours();
 	var m = d.getMinutes();
 	var s = d.getSeconds();
-	var hourDeg = h * 30 + (m / 2) - 180;
+	var hourDeg = h * 30 + (m / 2) + (s / 120) - 180;
 	var hourRun = "rotate(" + hourDeg + "deg)";
 	clocksT[0].css({ "transform": hourRun});
-	var minDeg = m * 6 - 180;
+	var minDeg = m * 6 + (s / 10) - 180;
 	var minRun = "rotate(" + minDeg + "deg)";
 	clocksT[1].css({ "transform" : minRun });
 	var secDeg = s * 6 - 180;
