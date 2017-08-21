@@ -19,7 +19,8 @@ let tBreak = 5 * MS_IN_MINUTE;
 let tStop = 30 * MS_IN_MINUTE;
 let cycle = 0;
 let notification;
-let alertAudio = new Audio('audio/servietsky.mp3');
+let alertAudio = new Audio('audio/good_job.mp3');
+let srcAudio = ['audio/good_job.mp3', 'audio/chewbacca.mp3', 'audio/servietsky.mp3'];
 let colorBar = [[0, 128, 0], [128, 128, 0], [255, 228, 0], [255, 128, 0], [255, 0, 0]];
 
 // La seule vrai boucle ^^
@@ -110,26 +111,31 @@ function goNextStepPre() {
 
 // Fais passer à l'étape suivante et le notifie
 function goNextStep() {
+	var tmpSon;
 	isPaused = (isLooping)?true:false;
 	play.html('<i class="fa fa-play">');
 	hideClock();
 
 	if(inBreak) {
-		switchPhase(tWork)
+		switchPhase(tWork);
+		tmpSon = srcAudio[1];
 		if(cycle < 3) cycle++;
 		else cycle = 0;
 		var tmp = {body: 'Il est temps de retourner au travail!'};
 	}
 	else if(cycle < 3) {
-		switchPhase(tBreak)
+		switchPhase(tBreak);
+		tmpSon = srcAudio[0];
 		var tmp = {body: 'Il est temps de se détendre ' + Math.floor(tBreak / MS_IN_MINUTE) + 'mn!'};
 	}
 	else {
-		switchPhase(tStop)
+		switchPhase(tStop);
+		tmpSon = srcAudio[2];
 		var tmp = {body: 'Il est temps de déconnecter!!!'};
 	}
 
 	if(isLooping) {
+		alertAudio = new Audio(tmpSon);
 		alertAudio.play();
 		alertAudio.loop = true;
 		nextStep.hide();
