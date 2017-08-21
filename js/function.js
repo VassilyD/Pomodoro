@@ -20,6 +20,7 @@ let tStop = 30 * MS_IN_MINUTE;
 let cycle = 0;
 let notification;
 let alertAudio = new Audio('audio/alert.wav');
+let colorBar = [[0, 128, 0], [128, 128, 0], [255, 228, 0], [255, 128, 0], [255, 0, 0]];
 
 // La seule vrai boucle ^^
 function mainLoop() {
@@ -167,26 +168,7 @@ function setProgressBarColor(tmp) {
 		else if (tmp >= 25) ProgressBarColor((tmp-25)*4, [255, 228, 0], [128, 128, 0]); // (tmp-25)*4 => (50-tmp)/25
 		else  ProgressBarColor(tmp*4, [128, 128, 0], [0, 128, 0]); // (tmp)*4 => (25-tmp)/25
 	}
-	else switch(cycle) {
-		case 0:
-			if(!inBreak) ProgressBarColor(tmp, [0, 128, 0], [128, 128, 0]);
-			break;
-
-		case 1:
-			if(!inBreak) ProgressBarColor(tmp, [128, 128, 0], [255, 228, 0]);
-			break;
-
-		case 2:
-			if(!inBreak) ProgressBarColor(tmp, [255, 228, 0], [255, 128, 0]);
-			break;
-
-		case 3:
-			if(!inBreak) ProgressBarColor(tmp, [255, 128, 0], [255, 0, 0]);
-			break;
-
-		default:
-			console.log('Ceci ne devrais pas arrivé!');
-	}
+	else ProgressBarColor(tmp, colorBar[cycle], colorBar[cycle+1]);
 }
 
 // Actualise le temps restant et la barre de progression
