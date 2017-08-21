@@ -154,7 +154,7 @@ function styleTime(time = 0) {
 }
 
 // modifie la couleur de la barre de progression en fonction de l'avancement du chrono et du cycle
-function setProgressBarColor() {
+function setProgressBarColor(tmp) {
 	if(cycle == 3 && inBreak) {
 		if (tmp >= 75) staminaBar.css('background-color', 'rgb(255, ' + (128*(100-tmp)/25) + ', 0)');
 		else if (tmp >= 50) staminaBar.css('background-color', 'rgb(255, ' + (128 + 100*(75-tmp)/25) + ', 0)');
@@ -198,7 +198,7 @@ function timing() {
 	if (inBreak) staminaBar.animate({width: (100 - tmp)+'%'}, ANIM_SPEED);
 	else staminaBar.animate({width: tmp+'%'}, ANIM_SPEED);
 
-	setProgressBarColor();
+	setProgressBarColor(tmp);
 
 	if(tempsRestant <= 0) {
 		goNextStep();

@@ -22,7 +22,7 @@ $(document).ready(function(){
 	clocks = [$('#hour'), $('#min'), $('#sec')];
 	clocksF = [$('#hourF'), $('#minF'), $('#secF')];
 	hideClock();
-	for(i = 0; i < 3; i++) clocks[i].css({'height': '-=5%', 'width': '+=1px'});
+	for(i = 0; i < 3; i++) clocks[i].css({'height': '-=2%'});
 	setTimeout(function(){setInterval(mainLoop, 1000)}, Date.now() % (MS_IN_SECONDE+1));
 	
 	play.click(switchPlay);
