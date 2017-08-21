@@ -52,6 +52,7 @@ function clock(time = Date.now(), clocksT = clocks) {
 
 function switchPlay() {
 	alertAudio.loop = false;
+	nextStep.show();
 	if(!isLooping) {
 		dateFinChrono = (tempsRestant == 0)?(Date.now() + tWork):(Date.now() + tempsRestant);
 		timing();
@@ -83,6 +84,7 @@ function stopTimer() {
 	staminaBar.css('background-color', 'green');
 	staminaBar.animate({width: '100%'}, 250);
 	alertAudio.loop = false;
+	nextStep.show();
 	play.text('Lancer');
 	hideClock();
 }
@@ -100,30 +102,36 @@ function goNextStepPre() {
 
 function goNextStep() {
 	isPaused = (isLooping)?true:false;
-	if(isLooping) {
-		alertAudio.play();
-		alertAudio.loop = true;
-	}
 	play.text('Play');
 	hideClock();
+	
 	if(inBreak) {
 		switchPhase(tWork)
 		if(cycle < 3) cycle++;
 		else cycle = 0;
-		notification = new Notification('Yohohoho!', {body: 'Il est temps de retourner au travail!'});
+		var tmp = {body: 'Il est temps de retourner au travail!'};
 	}
 	else if(cycle < 3) {
 		switchPhase(tBreak)
-		notification = new Notification('Yohohoho!', {body: 'Il est temps de se détendre ' + Math.floor(tBreak / MS_IN_MINUTE) + 'mn!'});
+		var tmp = {body: 'Il est temps de se détendre ' + Math.floor(tBreak / MS_IN_MINUTE) + 'mn!'};
 	}
 	else {
 		switchPhase(tStop)
-		notification = new Notification('Yohohoho!', {body: 'Il est temps de déconnecter!!!'});
+		var tmp = {body: 'Il est temps de déconnecter!!!'};
 	}
-	notification.onclick = function(){
-		switchPlay()
-		notification.close();
+
+	if(isLooping) {
+		alertAudio.play();
+		alertAudio.loop = true;
+		nextStep.hide();
+
+		notification = new Notification('Yohohoho!', tmp);
+		notification.onclick = function(){
+			switchPlay()
+			notification.close();
+		}
 	}
+
 }
 
 function styleTime(time = 0) {
