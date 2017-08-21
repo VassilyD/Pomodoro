@@ -152,33 +152,36 @@ function styleTime(time = 0) {
 
 	return "" + minutes + " : " + secondes;
 }
+function ProgressBarColor(tmp, colorD = [0, 0, 0], colorF = [0, 0, 0]) {
+	var red = (colorD[0] == colorF[0])?colorD[0]:(colorD[0] + (colorF[0] - colorD[0]) * (100 - tmp) / 100);
+	var green = (colorD[1] == colorF[1])?colorD[1]:(colorD[1] + (colorF[1] - colorD[1]) * (100 - tmp) / 100);
+	var blue = (colorD[2] == colorF[2])?colorD[2]:(colorD[2] + (colorF[2] - colorD[2]) * (100 - tmp) / 100);
+	staminaBar.css('background-color', 'rgb(' + red + ', ' + green + ', ' + blue + ')');
+}
 
 // modifie la couleur de la barre de progression en fonction de l'avancement du chrono et du cycle
 function setProgressBarColor(tmp) {
 	if(cycle == 3 && inBreak) {
-		if (tmp >= 75) staminaBar.css('background-color', 'rgb(255, ' + (128*(100-tmp)/25) + ', 0)');
-		else if (tmp >= 50) staminaBar.css('background-color', 'rgb(255, ' + (128 + 100*(75-tmp)/25) + ', 0)');
-		else if (tmp >= 25) staminaBar.css('background-color', 'rgb(' + (255 - 127*(50-tmp)/25) + ', ' + (228 - 100*(50-tmp)/25) + ', 0)');
-		else  staminaBar.css('background-color', 'rgb(' + (128 - 128*(25-tmp)/25) + ', 128, 0)');
+		if (tmp >= 75) ProgressBarColor((tmp-75)*4, [255, 0, 0], [255, 128, 0]); // (tmp-75)*4 donne dans l'expression (100-tmp)/100 = (100-4*tmp+4*75)/100 = (400-4*tmp)/100 = 4*(100-tmp)/100 = (100-tmp)/25
+		else if (tmp >= 50) ProgressBarColor((tmp-50)*4, [255, 128, 0], [255, 228, 0]); // (tmp-50)*4 => (75-tmp)/25
+		else if (tmp >= 25) ProgressBarColor((tmp-25)*4, [255, 228, 0], [128, 128, 0]); // (tmp-25)*4 => (50-tmp)/25
+		else  ProgressBarColor(tmp*4, [128, 128, 0], [0, 128, 0]); // (tmp)*4 => (25-tmp)/25
 	}
 	else switch(cycle) {
 		case 0:
-			if(inBreak) staminaBar.css('background-color', 'rgb(128, 128, 0)');
-			else staminaBar.css('background-color', 'rgb(' + (128*(100-tmp)/100) + ', 128, 0)');
+			if(!inBreak) ProgressBarColor(tmp, [0, 128, 0], [128, 128, 0]);
 			break;
 
 		case 1:
-			if(inBreak) staminaBar.css('background-color', 'rgb(255, 228, 0)');
-			else staminaBar.css('background-color', 'rgb(' + (128 + 127*(100-tmp)/100) + ', ' + (128 + 100*(100-tmp)/100) + ', 0)');
+			if(!inBreak) ProgressBarColor(tmp, [128, 128, 0], [255, 228, 0]);
 			break;
 
 		case 2:
-			if(inBreak) staminaBar.css('background-color', 'rgb(255, 128, 0)');
-			else staminaBar.css('background-color', 'rgb(255, ' + (228 - 100*(100-tmp)/100) + ', 0)');
+			if(!inBreak) ProgressBarColor(tmp, [255, 228, 0], [255, 128, 0]);
 			break;
 
 		case 3:
-			staminaBar.css('background-color', 'rgb(255, ' + (128 - 128*(100-tmp)/100) + ', 0)');
+			if(!inBreak) ProgressBarColor(tmp, [255, 128, 0], [255, 0, 0]);
 			break;
 
 		default:
