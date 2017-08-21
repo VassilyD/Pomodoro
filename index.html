@@ -17,9 +17,20 @@
 		<div id="staminaBar"></div>
 	</div>
 	<form id='setTime'>
-		Working Time (mn) : <input type="number" name="tWork" min="0" value="20"><br>
-		Break Time (mn) : <input type="number" name="tBreak" min="0" value="10"><br>
-		Chill Time (mn) : <input type="number" name="tStop" min="0" value="30"><br>
+		<div id="workSet">
+			<label for="tWork">Work :</label><br>
+			<input type="number" name="tWork" min="0" value="20"> min
+		</div>
+
+		<div id="breakSet">
+			<label for="tBreak">Break :</label><br>
+			<input type="number" name="tBreak" min="0" value="10"> min
+		</div>
+
+		<div id="stopSet">
+			<label for="tStop">Chill :</label><br>
+			<input type="number" name="tStop" min="0" value="30"> min
+		</div>
 	</form>
 	<div class="clock">
 		<div id="hour"></div>

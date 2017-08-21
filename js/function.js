@@ -104,7 +104,7 @@ function goNextStep() {
 	isPaused = (isLooping)?true:false;
 	play.text('Play');
 	hideClock();
-	
+
 	if(inBreak) {
 		switchPhase(tWork)
 		if(cycle < 3) cycle++;
@@ -136,12 +136,10 @@ function goNextStep() {
 
 function styleTime(time = 0) {
 	var minutes = Math.floor(time / MS_IN_MINUTE);
-	minutes = (minutes<0)?0:minutes;
-	minutes = ('0' + minutes).slice(-2);
+	minutes = (minutes<0)?0:(minutes>=10)?minutes:('0' + minutes).slice(-2);
 
 	var secondes = Math.floor((time % MS_IN_MINUTE) / MS_IN_SECONDE);
-	secondes = (secondes<0)?0:secondes;
-	secondes = ('0' + secondes).slice(-2);
+	secondes = (secondes<0)?0:('0' + secondes).slice(-2);
 
 	return "" + minutes + " : " + secondes;
 }

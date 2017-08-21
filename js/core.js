@@ -29,7 +29,7 @@ $(document).ready(function(){
 	stop.click(stopTimer);
 	nextStep.click(goNextStepPre);
 
-	$('input:first').change(function(){
+	$('#workSet input').change(function(){
 		if(!inBreak && isLooping) {
 			if(isPaused) dateFinChrono = Date.now() + tempsRestant;
 			dateFinChrono += inputs[0].value * MS_IN_MINUTE - tWork;
@@ -42,9 +42,9 @@ $(document).ready(function(){
 			if(!inBreak) display.html(styleTime(tWork));
 		}
 	});
-	$('input:nth-child(3)').change(function(){
+	$('#breakSet input').change(function(){
 		if(inBreak && cycle < 3) {
-			if(isPaused) dateFinChrono = Date.now() + tempsRestant;
+			if(isPaused || !isLooping) dateFinChrono = Date.now() + tempsRestant;
 			dateFinChrono += inputs[1].value * MS_IN_MINUTE - tBreak;
 			tBreak = inputs[1].value * MS_IN_MINUTE;
 			timing();
@@ -52,9 +52,9 @@ $(document).ready(function(){
 		}
 		else tBreak = inputs[1].value * MS_IN_MINUTE;
 	});
-	$('input:last').change(function(){
+	$('#stopSet input').change(function(){
 		if(inBreak && cycle == 3) {
-			if(isPaused) dateFinChrono = Date.now() + tempsRestant;
+			if(isPaused || !isLooping) dateFinChrono = Date.now() + tempsRestant;
 			dateFinChrono += inputs[2].value * MS_IN_MINUTE - tStop;
 			tStop = inputs[2].value * MS_IN_MINUTE;
 			timing();
