@@ -159,3 +159,16 @@ input[type="number"] {
 	top: 75vh;
 	background-color: magenta;
 }
+
+#menuSwitch {
+	position: fixed;
+	right: 15vw;
+	bottom: 5vh;
+}
+
+#menu {
+	position: fixed;
+	right: 5vw;
+	bottom: 5vh;
+	visibility: hidden;
+}

@@ -159,6 +159,8 @@ function styleTime(time = 0) {
 
 	return "" + minutes + " : " + secondes;
 }
+
+// Change la couleur de la barre en fonction du % de temps et du nombre de cycle écoulé
 function ProgressBarColor(tmp, colorD = [0, 0, 0], colorF = [0, 0, 0]) {
 	var red = (colorD[0] == colorF[0])?colorD[0]:(colorD[0] + (colorF[0] - colorD[0]) * (100 - tmp) / 100);
 	var green = (colorD[1] == colorF[1])?colorD[1]:(colorD[1] + (colorF[1] - colorD[1]) * (100 - tmp) / 100);
