@@ -136,7 +136,6 @@ function selectPhase(phase) {
 	switch(phase) {
 		case 'work':
 			inBreak = true;
-			if(cycle == 3) cycle = 0;
 			switchPhase(tWork);
 			staminaBar.css('background-color', 'rgb('+colorBar[cycle][0]+', '+colorBar[cycle][1]+', '+colorBar[cycle][2]+')');
 			staminaBar.animate({width: '100%'}, 250);
@@ -144,7 +143,7 @@ function selectPhase(phase) {
 
 		case 'break':
 			inBreak = false;
-			if(cycle == 3) cycle = 0;
+			if(cycle == 3) cycle = 2;
 			switchPhase(tBreak);
 			staminaBar.animate({width: '0%'}, 250);
 			break;
