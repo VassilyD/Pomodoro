@@ -9,9 +9,13 @@ let tempsRestant = 0;
 let play = {};
 let stop = {};
 let nextStep = {};
-let inputs = {};
+let timeSet = {};
 let display = {};
 let staminaBar = {};
+let headTitle = {};
+let phaseShower = {};
+let menuIcon = {};
+let menu = {};
 let clocks = [];
 let clocksF = [];
 let tWork = 25 * MS_IN_MINUTE;
@@ -39,6 +43,10 @@ function hideClock() {
 	for(i = 0; i < 3; i++) clocksF[i].hide();
 }
 
+function menuToggle() {
+	menu.toggle();
+	menuIcon.attr('class', (menuIcon.attr('class') == 'fa fa-info-circle')?'fa fa-times-circle':'fa fa-info-circle');
+}
 // positionne les aiguilles de l'horloge selectionné en fonction de la date entrée
 // Merci Roxane!
 function clock(time = Date.now(), clocksT = clocks) {
@@ -66,6 +74,7 @@ function switchPlay() {
 		timing();
 		clock(dateFinChrono, clocksF);
 		showClock();
+		glowingPhase();
 		play.html('<i class="fa fa-pause">');
 		isLooping = true;
 	}
@@ -95,13 +104,67 @@ function stopTimer() {
 	alertAudio.loop = false;
 	nextStep.show();
 	play.html('<i class="fa fa-play">');
+	headTitle.text(' Pomodoro');
 	hideClock();
+	unGlowing();
+}
+
+function glowingPhase() {
+	unGlowing();
+	if(!inBreak) {
+		phaseShower.css('top', '45vh');
+	}
+	else if(cycle < 3) {
+		phaseShower.css('top', '60vh');
+	}
+	else {
+		phaseShower.css('top', '75vh');
+	}
+	phaseShower.show();
+}
+
+function unGlowing() {
+	phaseShower.hide();
+}
+
+function selectPhase(phase) {
+	isPaused = (isLooping)?true:false;
+	play.html('<i class="fa fa-play">');
+	hideClock();
+	alertAudio.loop = false;
+
+	switch(phase) {
+		case 'work':
+			inBreak = true;
+			if(cycle == 3) cycle = 0;
+			switchPhase(tWork);
+			staminaBar.css('background-color', 'rgb('+colorBar[cycle][0]+', '+colorBar[cycle][1]+', '+colorBar[cycle][2]+')');
+			staminaBar.animate({width: '100%'}, 250);
+			break;
+
+		case 'break':
+			inBreak = false;
+			if(cycle == 3) cycle = 0;
+			switchPhase(tBreak);
+			staminaBar.animate({width: '0%'}, 250);
+			break;
+
+		case 'chill':
+			inBreak = false;
+			cycle = 3;
+			switchPhase(tStop);
+			staminaBar.animate({width: '0%'}, 250);
+			break;
+
+		default:
+	}
 }
 
 function switchPhase(newTime = 0) {
 	tempsRestant = newTime;
 	display.html(styleTime(newTime));
 	inBreak = !inBreak;
+	glowingPhase();
 }
 
 function goNextStepPre() {
@@ -111,11 +174,8 @@ function goNextStepPre() {
 
 // Fais passer à l'étape suivante et le notifie
 function goNextStep() {
+	alertAudio.loop = false;
 	var tmpSon;
-	isPaused = (isLooping)?true:false;
-	play.html('<i class="fa fa-play">');
-	hideClock();
-
 	if(inBreak) {
 		switchPhase(tWork);
 		tmpSon = srcAudio[1];
@@ -134,7 +194,7 @@ function goNextStep() {
 		var tmp = {body: 'Il est temps de déconnecter!!!'};
 	}
 
-	if(isLooping) {
+	if(isLooping && !isPaused) {
 		alertAudio = new Audio(tmpSon);
 		alertAudio.play();
 		alertAudio.loop = true;
@@ -147,15 +207,18 @@ function goNextStep() {
 		}
 	}
 
+	isPaused = (isLooping)?true:false;
+	play.html('<i class="fa fa-play">');
+	hideClock();
 }
 
 // Renvoie une chaine de caractère du type 'MM : SS'
 function styleTime(time = 0) {
 	var minutes = Math.floor(time / MS_IN_MINUTE);
-	minutes = (minutes<0)?0:(minutes>=10)?minutes:('0' + minutes).slice(-2);
+	minutes = (minutes<=0)?'00':(minutes>=10)?minutes.toString():('0' + minutes.toString());
 
 	var secondes = Math.floor((time % MS_IN_MINUTE) / MS_IN_SECONDE);
-	secondes = (secondes<0)?0:('0' + secondes).slice(-2);
+	secondes = (secondes<0)?'00':(secondes>=10)?secondes.toString():('0' + secondes.toString());
 
 	return "" + minutes + " : " + secondes;
 }
@@ -174,6 +237,7 @@ function setProgressBarColor(tmp) {
 		var etape = Math.min(3, Math.floor(tmp/25));
 		ProgressBarColor((tmp-25*etape)*4, colorBar[etape+1], colorBar[etape]);
 	}
+	else if(inBreak) ProgressBarColor(tmp, colorBar[cycle+1], colorBar[cycle+1]);
 	else ProgressBarColor(tmp, colorBar[cycle], colorBar[cycle+1]);
 }
 
@@ -181,13 +245,11 @@ function setProgressBarColor(tmp) {
 function timing() {
 	tempsRestant = (dateFinChrono - Date.now());
 	display.html(styleTime(tempsRestant));
-	$('title').text(styleTime(tempsRestant) + ' Pomodoro');
+	headTitle.text(styleTime(tempsRestant) + ' Pomodoro');
 
-	var tmp = (!inBreak)?tWork:(cycle < 3)?tBreak:tStop;
-	tmp = 100 * tempsRestant / tmp;
-	tmp = (tmp > 100)?100:(tmp < 0)?0:tmp;
-	if (inBreak) staminaBar.animate({width: (100 - tmp)+'%'}, ANIM_SPEED);
-	else staminaBar.animate({width: tmp+'%'}, ANIM_SPEED);
+	var tmp =  Math.min(100, Math.max(0, 100 * tempsRestant / ((!inBreak)?tWork:(cycle < 3)?tBreak:tStop)));
+
+	staminaBar.animate({width: (100*inBreak + ((-1)**inBreak)*tmp)+'%'}, ANIM_SPEED);
 
 	setProgressBarColor(tmp);
 

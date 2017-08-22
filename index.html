@@ -17,16 +17,20 @@
 	<div class="staminaBox">
 		<div id="staminaBar"></div>
 	</div>
+	<i id="phaseShower" class="fa fa-hand-o-left"></i>
+	<i id="selectWork" class="fa fa-dot-circle-o"></i>
 	<div id="workSet">
 		<label for="tWork">Work :</label><br>
-		<input type="number" name="tWork" min="0" value="20"> min
+		<input type="number" name="tWork" min="0" value="20">min
 	</div>
 
+	<i id="selectBreak" class="fa fa-dot-circle-o"></i>
 	<div id="breakSet">
 		<label for="tBreak">Break :</label><br>
 		<input type="number" name="tBreak" min="0" value="10"> min
 	</div>
 
+	<i id="selectChill" class="fa fa-dot-circle-o"></i>
 	<div id="stopSet">
 		<label for="tStop">Chill :</label><br>
 		<input type="number" name="tStop" min="0" value="30"> min
@@ -39,15 +43,21 @@
 		<div id="minF"></div>
 		<div id="secF"></div>
 	</div>
-<!-- à venir : 
 	<i id="menuSwitch" class="fa fa-info-circle"></i>
-	switch avec fa fa-times-circle
 	<div id="menu">
-		un cadre pour les infos sur les raccourcis
-		la possibilité d'activé ou non les sons
+		<h3>Raccourcis :</h3>
+		<p>P : Play/Pause</p>
+		<p>S : Stop</p>
+		<p>N : Phase suivante</p>
+		<p>M : show/hide menu</p>
+		<p>W : Work time</p>
+		<p>B : Break time</p>
+		<p>C : Chill time</p>
+		<h3>Créateur :</h3>
+		<p><a href="mailto:vassily.dubois@gmail.com">Vassily Dubois</a></p>
+		<p class="version">v0.9</p>
 	</div>
-	penser à rajouter les éventuel mentions légales
--->
+	<!--penser à rajouter les éventuel mentions légales-->
 	<script src="js/core.js"></script>
 </body>
 </html>

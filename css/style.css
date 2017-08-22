@@ -133,6 +133,8 @@ input[type="number"] {
 	width: 2.3em;
 	outline: none;
 	font-size: 3vh;
+	text-align: center;
+	letter-spacing: 1px;
 }
 
 #workSet, #breakSet, #stopSet {
@@ -162,13 +164,61 @@ input[type="number"] {
 
 #menuSwitch {
 	position: fixed;
-	right: 15vw;
-	bottom: 5vh;
+	right: 5vw;
+	top: 45vh;
+	width: 5vh;
+	height: 5vh;
+	line-height: 5vh;
+	font-size: 5vh;
+	z-index: 100;
 }
 
 #menu {
 	position: fixed;
 	right: 5vw;
-	bottom: 5vh;
-	visibility: hidden;
+	top: 45vh;
+	width: 15vw;
+	height: 45vh;
+	padding: 0 1vw;
+	display: none;
+	background-color: whitesmoke;
+	font-size: 1.8vh;
+	z-index: 50;
+}
+
+#phaseShower {
+	position: fixed;
+	left: 16vw;
+	display: none;
+	height: 10vh;
+	line-height: 10vh;
+	font-size: 8vh;
+}
+
+.version {
+	position: absolute;
+	bottom: 1px;
+	right: 1px;
+	margin: 0;
+	padding: 0;
+}
+
+#selectWork, #selectBreak, #selectChill {
+	position: fixed;
+	left: 1vw;
+	height: 10vh;
+	line-height: 10vh;
+	font-size: 8vh;
+}
+
+#selectWork {
+	top: 45vh;
+}
+
+#selectBreak {
+	top: 60vh;
+}
+
+#selectChill {
+	top: 75vh;
 }

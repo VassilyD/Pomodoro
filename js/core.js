@@ -3,11 +3,22 @@ $(document).ready(function(){
 	stop = $('#stop');
 	nextStep = $('#next');
 	display = $('#time');
-	inputs = $('input');
+	headTitle = $('title');
+	timeSet = {
+		work: $('#workSet input'),
+		break: $('#breakSet input'),
+		chill: $('#stopSet input'),
+		selectWork: $('#selectWork'),
+		selectBreak: $('#selectBreak'),
+		selectChill: $('#selectChill')
+	};
+	phaseShower = $('#phaseShower');
 	staminaBar = $('#staminaBar');
-	inputs[0].value = Math.floor(tWork / MS_IN_MINUTE);;
-	inputs[1].value = Math.floor(tBreak / MS_IN_MINUTE);;
-	inputs[2].value = Math.floor(tStop / MS_IN_MINUTE);;
+	menuIcon = $('#menuSwitch');
+	menu = $('#menu');
+	timeSet.work.val(Math.floor(tWork / MS_IN_MINUTE));
+	timeSet.break.val(Math.floor(tBreak / MS_IN_MINUTE));
+	timeSet.chill.val(Math.floor(tStop / MS_IN_MINUTE));
 	display.html(styleTime(tWork));
 
 
@@ -28,47 +39,80 @@ $(document).ready(function(){
 	play.click(switchPlay);
 	stop.click(stopTimer);
 	nextStep.click(goNextStepPre);
+	menuIcon.click(menuToggle);
+	timeSet.selectWork.click(function(){selectPhase('work')});
+	timeSet.selectBreak.click(function(){selectPhase('break')});
+	timeSet.selectChill.click(function(){selectPhase('chill')});
 
 	// Gestion des différents chronos
-	$('#workSet input').change(function(){
+	timeSet.work.change(function(){
 		if(!inBreak && isLooping) {
 			if(isPaused) dateFinChrono = Date.now() + tempsRestant;
-			dateFinChrono += inputs[0].value * MS_IN_MINUTE - tWork;
-			tWork = inputs[0].value * MS_IN_MINUTE;
+			dateFinChrono += this.value * MS_IN_MINUTE - tWork;
+			tWork = this.value * MS_IN_MINUTE;
 			timing();
 			clock(dateFinChrono, clocksF);
 		}
 		else {
-			tWork = inputs[0].value * MS_IN_MINUTE;
+			tWork = this.value * MS_IN_MINUTE;
 			if(!inBreak) display.html(styleTime(tWork));
 		}
 	});
-	$('#breakSet input').change(function(){
+	timeSet.break.change(function(){
 		if(inBreak && cycle < 3) {
 			if(isPaused || !isLooping) dateFinChrono = Date.now() + tempsRestant;
-			dateFinChrono += inputs[1].value * MS_IN_MINUTE - tBreak;
-			tBreak = inputs[1].value * MS_IN_MINUTE;
+			dateFinChrono += this.value * MS_IN_MINUTE - tBreak;
+			tBreak = this.value * MS_IN_MINUTE;
 			timing();
 			clock(dateFinChrono, clocksF);
 		}
-		else tBreak = inputs[1].value * MS_IN_MINUTE;
+		else tBreak = this.value * MS_IN_MINUTE;
 	});
-	$('#stopSet input').change(function(){
+	timeSet.chill.change(function(){
 		if(inBreak && cycle == 3) {
 			if(isPaused || !isLooping) dateFinChrono = Date.now() + tempsRestant;
-			dateFinChrono += inputs[2].value * MS_IN_MINUTE - tStop;
-			tStop = inputs[2].value * MS_IN_MINUTE;
+			dateFinChrono += this.value * MS_IN_MINUTE - tStop;
+			tStop = this.value * MS_IN_MINUTE;
 			timing();
 			clock(dateFinChrono, clocksF);
 		}
-		else tStop = inputs[2].value * MS_IN_MINUTE;
+		else tStop = this.value * MS_IN_MINUTE;
 	});
 
 	// Gestion des raccourcis clavier
 	$('body').keydown(function(event){
-		if(event.which == 32 || event.which == 80) switchPlay(); // 'espace' et 'p'
-		else if(event.which == 78) goNextStepPre(); // 'n'
-		else if(event.which == 83) stopTimer(); // 's'
+		switch(event.which) {
+			case 32: // espace
+			case 80: // p
+				switchPlay();
+				break;
+
+			case 77: // m
+				menuToggle()
+				break;
+
+			case 78: // n
+				goNextStepPre();
+				break;
+
+			case 83: // s
+				stopTimer();
+				break;
+
+			case 87: // w
+				selectPhase('work');
+				break;
+
+			case 66: // b
+				selectPhase('break');
+				break;
+
+			case 67: // c
+				selectPhase('chill');
+				break;
+
+			default:
+		}
 	});
 
 });
