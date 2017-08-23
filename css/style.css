@@ -84,35 +84,35 @@ body  {
 .clock {
 	position: fixed;
 	top: 45vh;
-	left: 40vw;
+	left: calc(50vw - 20vh);
+	width: 40vh;
+	height: 40vh;
 	border: 4px solid black;
 	border-radius: 100%;
-	padding: 10vw;
 	text-align: center;
 }
 
-#hour, #hourF {
+#hour, #hourF, #min, #minF, #sec, #secF {
 	position: absolute;
-	width: 4px;
-	height: 25%;
+	top: 50%;
+	left: 50%;
 	margin: auto;
 	transform-origin: left top;
+}
+
+#hour, #hourF {
+	width: 4px;
+	height: 25%;
 }
 
 #min, #minF {
-	position: absolute;
 	width: 2px;
 	height: 35%;
-	margin: auto;
-	transform-origin: left top;
 }
 
 #sec, #secF {
-	position: absolute;
 	width: 1px;
 	height: 45%;
-	margin: auto;
-	transform-origin: left top;
 }
 
 #hour, #min, #sec {

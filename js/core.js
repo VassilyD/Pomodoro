@@ -16,11 +16,15 @@ $(document).ready(function(){
 	staminaBar = $('#staminaBar');
 	menuIcon = $('#menuSwitch');
 	menu = $('#menu');
+	clockDiv = $('.clock');
+	clocks = [$('#hour'), $('#min'), $('#sec')];
+	clocksF = [$('#hourF'), $('#minF'), $('#secF')];
+
 	timeSet.work.val(Math.floor(tWork / MS_IN_MINUTE));
 	timeSet.break.val(Math.floor(tBreak / MS_IN_MINUTE));
 	timeSet.chill.val(Math.floor(tStop / MS_IN_MINUTE));
 	display.html(styleTime(tWork));
-
+	//clockSize();
 
 	if (!('Notification' in window)){
 		alert('This browser don\'t support Desktop Notifications.');
@@ -30,8 +34,6 @@ $(document).ready(function(){
 		});
 	}
 
-	clocks = [$('#hour'), $('#min'), $('#sec')];
-	clocksF = [$('#hourF'), $('#minF'), $('#secF')];
 	hideClock();
 	for(i = 0; i < 3; i++) clocks[i].css({'height': '-=2%'});
 	setTimeout(function(){setInterval(mainLoop, 1000)}, Date.now() % (MS_IN_SECONDE+1));
@@ -80,7 +82,7 @@ $(document).ready(function(){
 	});
 
 	// Gestion des raccourcis clavier
-	$('body').keydown(function(event){
+	$(window).keydown(function(event){
 		switch(event.which) {
 			case 32: // espace
 			case 80: // p
@@ -115,4 +117,5 @@ $(document).ready(function(){
 		}
 	});
 
+	//$(window).resize(clockSize);
 });

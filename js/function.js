@@ -16,6 +16,7 @@ let headTitle = {};
 let phaseShower = {};
 let menuIcon = {};
 let menu = {};
+let clockDiv = {};
 let clocks = [];
 let clocksF = [];
 let tWork = 25 * MS_IN_MINUTE;
@@ -43,10 +44,16 @@ function hideClock() {
 	for(i = 0; i < 3; i++) clocksF[i].hide();
 }
 
+// Affiche / cache le menu
 function menuToggle() {
 	menu.toggle();
 	menuIcon.attr('class', (menuIcon.attr('class') == 'fa fa-info-circle')?'fa fa-times-circle':'fa fa-info-circle');
 }
+/*
+function clockSize() {
+	clockDiv.css('height', (20 * ($(window).width() / $(window).height())) + 'vh');
+}
+*/
 // positionne les aiguilles de l'horloge selectionné en fonction de la date entrée
 // Merci Roxane!
 function clock(time = Date.now(), clocksT = clocks) {
@@ -246,6 +253,7 @@ function timing() {
 	display.html(styleTime(tempsRestant));
 	headTitle.text(styleTime(tempsRestant) + ' Pomodoro');
 
+	// tmp = pourcentage de temps restant
 	var tmp =  Math.min(100, Math.max(0, 100 * tempsRestant / ((!inBreak)?tWork:(cycle < 3)?tBreak:tStop)));
 
 	staminaBar.animate({width: (100*inBreak + ((-1)**inBreak)*tmp)+'%'}, ANIM_SPEED);
