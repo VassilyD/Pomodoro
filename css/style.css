@@ -44,8 +44,8 @@ body  {
 
 #time {
 	top: 5vh;
-	left: 32vw;
-	width: 36vw;
+	left: 30vw;
+	width: 55vw;
 	font-size: 10vh;
 	background-color: beige;
 }
@@ -146,7 +146,7 @@ input[type="number"] {
 	line-height: 4vh;
 	text-align: center;
 	font-size: 3vh;
-	overflow: hidden;
+	overflow: auto;
 }
 
 #workSet {
@@ -184,9 +184,9 @@ input[type="number"] {
 	padding: 0 1vw;
 	display: none;
 	background-color: whitesmoke;
-	font-size: 1.8vh;
+	font-size: 1.75vh;
 	z-index: 50;
-	overflow: scroll;
+	overflow: auto;
 }
 
 #phaseShower {
