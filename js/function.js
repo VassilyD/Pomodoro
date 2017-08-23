@@ -49,11 +49,16 @@ function menuToggle() {
 	menu.toggle();
 	menuIcon.attr('class', (menuIcon.attr('class') == 'fa fa-info-circle')?'fa fa-times-circle':'fa fa-info-circle');
 }
-/*
+
 function clockSize() {
-	clockDiv.css('height', (20 * ($(window).width() / $(window).height())) + 'vh');
+	if($(window).width() > $(window).height()) {
+		clockDiv.css({height: '40vh', width: '40vh', left: 'calc(50vw - 20vh)'});
+	}
+	else {
+		clockDiv.css({height: '40vw', width: '40vw', left: '30vw'});
+	}
 }
-*/
+
 // positionne les aiguilles de l'horloge selectionné en fonction de la date entrée
 // Merci Roxane!
 function clock(time = Date.now(), clocksT = clocks) {

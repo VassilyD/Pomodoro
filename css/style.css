@@ -9,6 +9,7 @@ body  {
 	font-size: 5vh;
 	text-align: center;
 	line-height: 10vh;
+	overflow: hidden;
 }
 
 #play {
@@ -43,8 +44,8 @@ body  {
 
 #time {
 	top: 5vh;
-	left: 37vw;
-	width: 26vw;
+	left: 32vw;
+	width: 36vw;
 	font-size: 10vh;
 	background-color: beige;
 }
@@ -145,6 +146,7 @@ input[type="number"] {
 	line-height: 4vh;
 	text-align: center;
 	font-size: 3vh;
+	overflow: hidden;
 }
 
 #workSet {
@@ -184,6 +186,7 @@ input[type="number"] {
 	background-color: whitesmoke;
 	font-size: 1.8vh;
 	z-index: 50;
+	overflow: scroll;
 }
 
 #phaseShower {
@@ -208,7 +211,8 @@ input[type="number"] {
 	left: 1vw;
 	height: 10vh;
 	line-height: 10vh;
-	font-size: 8vh;
+	font-size: 3vw;
+	overflow: hidden;
 }
 
 #selectWork {

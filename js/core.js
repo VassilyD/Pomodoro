@@ -24,7 +24,7 @@ $(document).ready(function(){
 	timeSet.break.val(Math.floor(tBreak / MS_IN_MINUTE));
 	timeSet.chill.val(Math.floor(tStop / MS_IN_MINUTE));
 	display.html(styleTime(tWork));
-	//clockSize();
+	clockSize();
 
 	if (!('Notification' in window)){
 		alert('This browser don\'t support Desktop Notifications.');
@@ -117,5 +117,5 @@ $(document).ready(function(){
 		}
 	});
 
-	//$(window).resize(clockSize);
+	$(window).resize(clockSize);
 });
