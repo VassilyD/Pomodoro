@@ -168,9 +168,6 @@ input[type="number"] {
 	position: fixed;
 	right: 5vw;
 	top: 45vh;
-	width: 5vh;
-	height: 5vh;
-	line-height: 5vh;
 	font-size: 5vh;
 	z-index: 100;
 }
@@ -225,4 +222,28 @@ input[type="number"] {
 
 #selectChill {
 	top: 75vh;
+}
+
+@media only screen and (orientation: portrait) {
+	.clock {
+		left: 30vw;
+		width: 40vw;
+		height: 40vw;
+	}
+
+	#time {
+		font-size: 10vw;
+	}
+
+	.staminaText {
+		font-size: 10vw;
+	}
+
+	#menu {
+		font-size: 1.7vw;
+	}
+
+	#menuSwitch {
+		font-size: 5vw;
+	}
 }
