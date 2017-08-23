@@ -212,6 +212,10 @@ input[type="number"] {
 	overflow: hidden;
 }
 
+#selectWork:hover, #selectBreak:hover, #selectChill:hover {
+	cursor: crosshair;
+}
+
 #selectWork {
 	top: 45vh;
 }
