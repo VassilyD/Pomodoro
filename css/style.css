@@ -128,7 +128,7 @@ body  {
 }
 
 /* Merci benoit ^^ */
-input[type="number"] {
+input[type="text"] {
 	background-color: transparent;
 	border: none;
 	width: 2.3em;
@@ -143,7 +143,7 @@ input[type="number"] {
 	left: 5vw;
 	width: 10vw;
 	height: 10vh;
-	line-height: 4vh;
+	line-height: 4.5vh;
 	text-align: center;
 	font-size: 3vh;
 	overflow: auto;
@@ -170,6 +170,10 @@ input[type="number"] {
 	top: 45vh;
 	font-size: 5vh;
 	z-index: 100;
+}
+
+#menuSwitch:hover {
+	cursor: help;
 }
 
 #menu {
@@ -205,10 +209,8 @@ input[type="number"] {
 
 #selectWork, #selectBreak, #selectChill {
 	position: absolute;
-	left: 1vw;
-	height: 10vh;
-	line-height: 10vh;
-	font-size: 3vw;
+	left: calc(2.5vw - 3vh);
+	font-size: 6vh;
 	overflow: hidden;
 }
 
@@ -217,37 +219,101 @@ input[type="number"] {
 }
 
 #selectWork {
-	top: 45vh;
+	top: calc(50vh - 3vh);
 }
 
 #selectBreak {
-	top: 60vh;
+	top: calc(65vh - 3vh);
 }
 
 #selectChill {
-	top: 75vh;
+	top: calc(80vh - 3vh);
 }
 
-@media only screen and (orientation: portrait) {
-	.clock {
-		left: 30vw;
-		width: 40vw;
-		height: 40vw;
+@media only screen and (max-aspect-ratio: 20/10) {
+
+	#workSet, #breakSet, #stopSet {
+		font-size: 1.5vw;
+		height: 5vw;
+		line-height: 2.25vw;
+	}
+
+	input[type="text"] {
+		font-size: 1.5vw;
+	}
+
+	#workSet {
+		top: calc(50vh - 2.5vw);
+	}
+
+	#breakSet {
+		top: calc(65vh - 2.5vw);
+	}
+
+	#stopSet {
+		top: calc(80vh - 2.5vw);
+	}
+
+	#selectWork, #selectBreak, #selectChill {
+		left: 1vw;
+		font-size: 3vw;
+	}
+
+	#selectWork {
+		top: calc(50vh - 1.5vw);
+	}
+
+	#selectBreak {
+		top: calc(65vh - 1.5vw);
+	}
+
+	#selectChill {
+		top: calc(80vh - 1.5vw);
+	}
+
+	#phaseShower {
+		left: 16vw;
+		height: 10vh;
+		line-height: 10vh;
+		font-size: 4vw;
 	}
 
 	#time {
-		font-size: 10vw;
+		font-size: 5vw;
+	}
+
+	#play, #stop, #next  {
+		font-size: 2.5vw;
+		height: 5vw;
+		top: calc(10vh - 2.5vw);
+		line-height: 5vw;
 	}
 
 	.staminaText {
-		font-size: 10vw;
+		font-size: 5vw;
+		line-height: 5vw;
+	}
+
+	.staminaBox, .staminaText {
+		top: calc(30vh - 2.5vw);
+		height: 5vw;
 	}
 
 	#menu {
-		font-size: 1.7vw;
+		font-size: 0.85vw;
 	}
 
 	#menuSwitch {
-		font-size: 5vw;
+		font-size: 2.5vw;
+	}
+}
+
+@media only screen and (orientation: portrait) {
+
+	.clock {
+		top: calc(65vh - 20vw);
+		left: 30vw;
+		width: 40vw;
+		height: 40vw;
 	}
 }
