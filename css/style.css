@@ -3,7 +3,7 @@ body  {
 }
 
 #play, #stop, #time, #next  {
-	position: fixed;
+	position: absolute;
 	height: 10vh;
 	width: 10vw;
 	font-size: 5vh;
@@ -51,7 +51,7 @@ body  {
 }
 
 .staminaBox, .staminaText {
-	position: fixed;
+	position: absolute;
 	top: 25vh;
 	left: 5vw;
 	height: 10vh;
@@ -83,7 +83,7 @@ body  {
 
 
 .clock {
-	position: fixed;
+	position: absolute;
 	top: 45vh;
 	left: calc(50vw - 20vh);
 	width: 40vh;
@@ -139,7 +139,7 @@ input[type="number"] {
 }
 
 #workSet, #breakSet, #stopSet {
-	position: fixed;
+	position: absolute;
 	left: 5vw;
 	width: 10vw;
 	height: 10vh;
@@ -165,7 +165,7 @@ input[type="number"] {
 }
 
 #menuSwitch {
-	position: fixed;
+	position: absolute;
 	right: 5vw;
 	top: 45vh;
 	font-size: 5vh;
@@ -173,7 +173,7 @@ input[type="number"] {
 }
 
 #menu {
-	position: fixed;
+	position: absolute;
 	right: 5vw;
 	top: 45vh;
 	width: 15vw;
@@ -187,7 +187,7 @@ input[type="number"] {
 }
 
 #phaseShower {
-	position: fixed;
+	position: absolute;
 	left: 16vw;
 	display: none;
 	height: 10vh;
@@ -204,7 +204,7 @@ input[type="number"] {
 }
 
 #selectWork, #selectBreak, #selectChill {
-	position: fixed;
+	position: absolute;
 	left: 1vw;
 	height: 10vh;
 	line-height: 10vh;
