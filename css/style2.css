@@ -200,9 +200,9 @@ input[type="text"] {
 	position: absolute;
 	left: calc(6vw + var(--bWidth));
 	display: none;
-	height: 10vh;
-	line-height: 10vh;
-	font-size: 8vh;
+	height: var(--bHeight);
+	line-height: var(--bHeight);
+	font-size: calc(var(--bHeight) * 0.8);
 }
 
 .version {
