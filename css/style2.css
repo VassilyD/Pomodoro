@@ -1,0 +1,237 @@
+body  {
+	background-color: beige;
+	--nbOr: calc(165580141 / 102334155);
+	--bWidth: 10vw;
+	--bHeight: calc(var(--bWidth) / var(--nbOr));
+	--hSpace: 2.5vw;
+	--hClock: calc(var(--bHeight) * 3 + var(--hSpace) * 3);
+}
+
+#play, #stop, #time, #next  {
+	position: absolute;
+	height: var(--bHeight);
+	width: var(--bWidth);
+	font-size: calc(var(--bHeight) / 2);
+	text-align: center;
+	line-height: var(--bHeight);
+	overflow: hidden;
+}
+
+#play {
+	top: var(--hSpace);
+	left: 5vw;
+	background-color: green;
+}
+
+#stop {
+	top: var(--hSpace);
+	right: 5vw;
+	background-color: red;
+}
+
+#next {
+	top: var(--hSpace);
+	left: 20vw;
+	background-color: orange;
+}
+
+#play:hover {
+	cursor: wait;
+}
+
+#stop:hover {
+	cursor: not-allowed;
+}
+
+#next:hover {
+	cursor: e-resize;
+}
+
+#time {
+	top: var(--hSpace);
+	left: 30vw;
+	width: 55vw;
+	font-size: var(--bHeight);
+	background-color: beige;
+}
+
+.staminaBox, .staminaText {
+	position: absolute;
+	top: calc(var(--hSpace) * 2 + var(--bHeight));
+	left: 5vw;
+	height: var(--bHeight);
+	width: 90vw;
+	text-align: center;
+	border: 1px solid;
+}
+
+.staminaText {
+	left: 20vw;
+	width: 60vw;
+	margin: 0;
+	padding: 0;
+	font-size: var(--bHeight);
+	line-height: var(--bHeight);
+	z-index: 100;
+	border: none;
+}
+
+#staminaBar {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background-color: green;
+	z-index: 50;
+}
+
+
+.clock {
+	position: absolute;
+	top: calc(var(--hSpace) * 3 + var(--bHeight) * 2);
+	left: calc(50vw - var(--hClock) / 2);
+	width: var(--hClock);
+	height: var(--hClock);
+	border: 2px solid black;
+	border-radius: 100%;
+	text-align: center;
+}
+
+#hour, #hourF, #min, #minF, #sec, #secF {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: auto;
+	transform-origin: left top;
+}
+
+#hour, #hourF {
+	width: 4px;
+	height: 25%;
+}
+
+#min, #minF {
+	width: 2px;
+	height: 35%;
+}
+
+#sec, #secF {
+	width: 1px;
+	height: 45%;
+}
+
+#hour, #min, #sec {
+	background-color: black;
+	opacity: 0.7;
+	z-index: 100;
+}
+
+#hourF, #minF, #secF {
+	background-color: red;
+	z-index: 50;
+}
+
+/* Merci benoit ^^ */
+input[type="text"] {
+	background-color: transparent;
+	border: none;
+	width: 2.35em;
+	outline: none;
+	font-size: calc((var(--bHeight)) / 3);
+	text-align: center;
+	letter-spacing: 1px;
+}
+
+#workSet, #breakSet, #stopSet {
+	position: absolute;
+	left: 5vw;
+	width: var(--bWidth);
+	height: var(--bHeight);
+	line-height: calc((var(--bHeight)) / 2.2 );
+	text-align: center;
+	font-size: calc((var(--bHeight)) / 2.75);
+	overflow: auto;
+}
+
+#workSet {
+	top: calc(var(--hSpace) * 3 + var(--bHeight) * 2);
+	background-color: orange;
+}
+
+#breakSet {
+	top: calc(var(--hSpace) * 4 + var(--bHeight) * 3);
+	background-color: green;
+}
+
+#stopSet {
+	top: calc(var(--hSpace) * 5 + var(--bHeight) * 4);
+	background-color: magenta;
+}
+
+#menuSwitch {
+	position: absolute;
+	right: 5vw;
+	top: calc(var(--hSpace) * 3 + var(--bHeight) * 2);
+	font-size: 2.5vw;
+	z-index: 100;
+}
+
+#menuSwitch:hover {
+	cursor: help;
+}
+
+#menu {
+	position: absolute;
+	right: 5vw;
+	top: calc(var(--hSpace) * 3 + var(--bHeight) * 2);
+	width: calc(var(--bWidth) * 1.5);
+	height: var(--hClock);
+	padding: 0 1vw;
+	display: none;
+	background-color: whitesmoke;
+	font-size: calc(var(--hClock) / 26);
+	line-height: calc(var(--hClock) / 20);
+	z-index: 50;
+	overflow: auto;
+}
+
+#phaseShower {
+	position: absolute;
+	left: calc(6vw + var(--bWidth));
+	display: none;
+	height: 10vh;
+	line-height: 10vh;
+	font-size: 8vh;
+}
+
+.version {
+	position: absolute;
+	bottom: 1px;
+	right: 1px;
+	margin: 0;
+	padding: 0;
+}
+
+#selectWork, #selectBreak, #selectChill {
+	position: absolute;
+	left: calc(2.5vw - var(--bHeight) / 4);
+	font-size: calc(var(--bHeight) / 2);
+	overflow: hidden;
+}
+
+#selectWork:hover, #selectBreak:hover, #selectChill:hover {
+	cursor: crosshair;
+}
+
+#selectWork {
+	top: calc(var(--hSpace) * 3 + var(--bHeight) * 2 + var(--bHeight) / 4);
+}
+
+#selectBreak {
+	top: calc(var(--hSpace) * 4 + var(--bHeight) * 3 + var(--bHeight) / 4);
+}
+
+#selectChill {
+	top: calc(var(--hSpace) * 5 + var(--bHeight) * 4 + var(--bHeight) / 4);
+}
