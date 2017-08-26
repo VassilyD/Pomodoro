@@ -2,9 +2,9 @@ body  {
 	background-color: beige;
 	--nbOr: calc(165580141 / 102334155);
 	--bWidth: 10vw;
-	--bHeight: calc(var(--bWidth) / var(--nbOr));
-	--hSpace: 2.5vw;
-	--hClock: calc(var(--bHeight) * 3 + var(--hSpace) * 3);
+	--bHeight: calc(var(--bWidth) / 2);
+	--hSpace: var(--bHeight);
+	--hClock: calc(var(--bHeight) * 3 + var(--hSpace) * 1);
 }
 
 #play, #stop, #time, #next  {
@@ -160,12 +160,12 @@ input[type="text"] {
 }
 
 #breakSet {
-	top: calc(var(--hSpace) * 4 + var(--bHeight) * 3);
+	top: calc(var(--hSpace) * 3.5 + var(--bHeight) * 3);
 	background-color: green;
 }
 
 #stopSet {
-	top: calc(var(--hSpace) * 5 + var(--bHeight) * 4);
+	top: calc(var(--hSpace) * 4 + var(--bHeight) * 4);
 	background-color: magenta;
 }
 
@@ -229,9 +229,9 @@ input[type="text"] {
 }
 
 #selectBreak {
-	top: calc(var(--hSpace) * 4 + var(--bHeight) * 3 + var(--bHeight) / 4);
+	top: calc(var(--hSpace) * 3.5 + var(--bHeight) * 3 + var(--bHeight) / 4);
 }
 
 #selectChill {
-	top: calc(var(--hSpace) * 5 + var(--bHeight) * 4 + var(--bHeight) / 4);
+	top: calc(var(--hSpace) * 4 + var(--bHeight) * 4 + var(--bHeight) / 4);
 }
