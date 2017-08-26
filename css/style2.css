@@ -2,7 +2,7 @@ body  {
 	background-color: beige;
 	--nbOr: calc(165580141 / 102334155);
 	--bWidth: 10vw;
-	--bHeight: calc(var(--bWidth) / var(--nbOr));
+	--bHeight: calc(var(--bWidth) / 2);
 	--hSpace: var(--bHeight);
 	--hClock: calc(var(--bHeight) * 3 + var(--hSpace) * 1);
 }
