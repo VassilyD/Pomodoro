@@ -2,7 +2,7 @@ body  {
 	background-color: beige;
 	--nbOr: calc(165580141 / 102334155);
 	--bWidth: 10vw;
-	--bHeight: calc(var(--bWidth) / 2);
+	--bHeight: calc(var(--bWidth) / var(--nbOr));
 	--hSpace: var(--bHeight);
 	--hClock: calc(var(--bHeight) * 3 + var(--hSpace) * 1);
 }
@@ -31,7 +31,7 @@ body  {
 
 #next {
 	top: var(--hSpace);
-	left: 20vw;
+	left: calc(10vw + var(--bWidth));
 	background-color: orange;
 }
 
@@ -49,8 +49,8 @@ body  {
 
 #time {
 	top: var(--hSpace);
-	left: 30vw;
-	width: 55vw;
+	left: calc(15vw + var(--bWidth) * 2);
+	width: calc(100vw - (25vw + var(--bWidth) * 3));
 	font-size: var(--bHeight);
 	background-color: beige;
 }
