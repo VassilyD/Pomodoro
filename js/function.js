@@ -231,13 +231,11 @@ function goNextStep() {
 
 // Renvoie une chaine de caractère du type 'MM : SS'
 function styleTime(time = 0) {
-	var minutes = Math.floor(time / MS_IN_MINUTE);
-	minutes = (minutes<=0)?'00':(minutes>=10)?minutes.toString():('0' + minutes.toString());
-
-	var secondes = Math.floor((time % MS_IN_MINUTE) / MS_IN_SECONDE);
-	secondes = (secondes<0)?'00':(secondes>=10)?secondes.toString():('0' + secondes.toString());
-
-	return "" + minutes + " : " + secondes;
+	var d = new Date(time);
+	var secondes = ('00' + d.getSeconds()).slice(-2);
+	var minutes = d.getMinutes() + 60 * (d.getHours() - 1);
+	
+	return "" + ((minutes >= 10)?minutes:('0'+minutes)) + " : " + secondes;
 }
 
 // Change la couleur de la barre en fonction du % de temps et du nombre de cycle écoulé
