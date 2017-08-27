@@ -5,7 +5,7 @@ body  {
 	--bWidth: 10vw;
 	--bHeight: calc(var(--bWidth) / var(--ratio));
 	--hSpace: calc(var(--bHeight) / var(--ratio));
-	--hClock: calc(var(--bHeight) * 3 + var(--hSpace) * 1);
+	--hWorkZone: calc(var(--bHeight) * 3 + var(--hSpace) * 1);
 	--wTime: calc(65vw - (var(--bWidth) * 3 + var(--bHeight) * 2));
 	--workSetTop: calc(var(--hSpace) * 3 + var(--bHeight) * 2);
 	--breakSetTop: calc(var(--hSpace) * 3.5 + var(--bHeight) * 3);
@@ -114,13 +114,14 @@ body  {
 }
 
 .clock-time {
+	--fontHeight: 1vw;
 	position: absolute;
-	top: calc(50% - var(--bHeight) / 2 - 1vw);
+	top: calc(0px - var(--fontHeight) /* * 1.125*/);
 	left: 50%;
 	width: 1px;
-	height: calc(var(--bHeight) / 2 + 1vw);
-	font-size: 1vw;
-	line-height: 1vw;
+	height: calc(var(--bHeight) / 2 + var(--fontHeight) /* * 1.125*/);
+	font-size: var(--fontHeight);
+	line-height: var(--fontHeight);
     transform-origin: 0 100%;
 }
 
@@ -128,8 +129,15 @@ body  {
 	width: 1.2vw;
 	position: absolute;
 	left: -0.6vw;
+	/*color: blue;*/
 }
-
+/*
+.clock-time span strong {
+	color: red;
+	font-size: calc(var(--fontHeight) * 1.25);
+	line-height: calc(var(--fontHeight) * 1.25);
+}
+*/
 .clock .cinq {
     transform: rotate(30deg);
 }
@@ -182,9 +190,13 @@ body  {
 }
 
 #hour, #hourF {
-	width: 3px;
-	left: calc(50% - 1.5px);
+	width: 4px;
+	left: calc(50% - 2px);
 	height: 25%;
+	background-color: red;
+}
+
+#hourF {
 	background-color: black;
 }
 
@@ -195,11 +207,19 @@ body  {
 	background-color: blue;
 }
 
+#minF {
+	background-color: red;
+}
+
 #sec, #secF {
 	width: 1px;
 	left: calc(50% - 0.5px);
 	height: 45%;
-	background-color: red;
+	background-color: black;
+}
+
+#secF  {
+	background-color: blue;
 }
 
 /* Merci benoit ^^ */
@@ -259,12 +279,12 @@ input[type="text"] {
 	right: 5vw;
 	top: calc(var(--hSpace) * 3 + var(--bHeight) * 2);
 	width: calc(var(--bWidth) * 1.5);
-	height: var(--hClock);
+	height: var(--hWorkZone);
 	padding: 0 1vw;
 	display: none;
 	background-color: whitesmoke;
-	font-size: calc(var(--hClock) / 15);
-	line-height: calc(var(--hClock) / 50);
+	font-size: calc(var(--hWorkZone) / 15);
+	line-height: calc(var(--hWorkZone) / 50);
 	z-index: 50;
 	overflow: auto;
 	border-radius: 1.1vw;
@@ -317,9 +337,9 @@ input[type="text"] {
 	top: var(--hTop);
 	--width: 50vw;
 	left: calc(49vw - var(--width) / 2);
-	height: calc(100vh - var(--hTop) - var(--hSpace));
+	height: var(--hWorkZone);
 	width: var(--width);
-	margin: 0.5vw
+	margin: 0;
 }
 
 #toDoList-toDo, #toDoList-doing, #toDoList-done {
@@ -329,6 +349,20 @@ input[type="text"] {
 	background-color: red;
 	width: 30%;
 	height: 100%;
+	border-radius: 1.1vw;
+}
+
+#toDoList h2{
+	position: absolute;
+	top: 0;
+	margin-top: 0;
+	width: 100%;
+	height: 2.5vw;
+	font-size: 1.75vw;
+	line-height: 2.5vw;
+	text-align: center;
+	background-color: burlywood;
+	border-radius: 1.1vw;
 }
 
 #toDoList-doing {
