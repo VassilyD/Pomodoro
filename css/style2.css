@@ -321,3 +321,33 @@ input[type="text"] {
 #selectChill {
 	top: calc(var(--hSpace) * 4 + var(--bHeight) * 4 + var(--bHeight) / 4);
 }
+
+#toDoList {
+	position: absolute;
+	--hTop: calc(var(--hSpace) * 3 + var(--bHeight) * 2);
+	top: var(--hTop);
+	--width: 50vw;
+	left: calc(49vw - var(--width) / 2);
+	height: calc(100vh - var(--hTop) - var(--hSpace));
+	width: var(--width);
+	margin: 0.5vw
+}
+
+#toDoList-toDo, #toDoList-doing, #toDoList-done {
+	position: absolute;
+	top: 0;
+	left: 0%;
+	background-color: red;
+	width: 30%;
+	height: 100%;
+}
+
+#toDoList-doing {
+	background-color: orange;
+	left: 33%;
+}
+
+#toDoList-done {
+	background-color: green;
+	left: 66%;
+}
