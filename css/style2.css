@@ -1,9 +1,10 @@
 body  {
 	background-color: beige;
 	--nbOr: calc(165580141 / 102334155);
+	--ratio: var(--nbOr);
 	--bWidth: 10vw;
-	--bHeight: calc(var(--bWidth) / var(--nbOr));
-	--hSpace: calc(var(--bHeight) / var(--nbOr));
+	--bHeight: calc(var(--bWidth) / var(--ratio));
+	--hSpace: calc(var(--bHeight) / var(--ratio));
 	--hClock: calc(var(--bHeight) * 3 + var(--hSpace) * 1);
 	--wTime: calc(65vw - (var(--bWidth) * 3 + var(--bHeight) * 2));
 	--workSetTop: calc(var(--hSpace) * 3 + var(--bHeight) * 2);
