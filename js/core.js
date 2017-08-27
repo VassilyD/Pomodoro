@@ -19,6 +19,7 @@ $(document).ready(function(){
 	clockDiv = $('.clock');
 	clocks = [$('#hour'), $('#min'), $('#sec')];
 	clocksF = [$('#hourF'), $('#minF'), $('#secF')];
+	//$('body').css('--ratio', String(Number(screen.width / screen.height)));
 
 	timeSet.work.val(Math.floor(tWork / MS_IN_MINUTE));
 	timeSet.break.val(Math.floor(tBreak / MS_IN_MINUTE));

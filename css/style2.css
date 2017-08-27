@@ -247,17 +247,17 @@ input[type="text"] {
 
 #workSet {
 	top: var(--workSetTop);
-	background-color: orange;
+	background-color: red;
 }
 
 #breakSet {
 	top: var(--breakSetTop);
-	background-color: green;
+	background-color: orange;
 }
 
 #stopSet {
 	top: var(--chillSetTop);
-	background-color: magenta;
+	background-color: green;
 }
 
 #menuSwitch {
