@@ -124,13 +124,13 @@ function stopTimer() {
 function glowingPhase() {
 	unGlowing();
 	if(!inBreak) {
-		phaseShower.css('top', 'calc(var(--hSpace) * 3 + var(--bHeight) * 2)');
+		phaseShower.css('top', 'var(--workSetTop)');
 	}
 	else if(cycle < 3) {
-		phaseShower.css('top', 'calc(var(--hSpace) * 3.5 + var(--bHeight) * 3)');
+		phaseShower.css('top', 'var(--breakSetTop)');
 	}
 	else {
-		phaseShower.css('top', 'calc(var(--hSpace) * 4 + var(--bHeight) * 4)');
+		phaseShower.css('top', 'var(--chillSetTop)');
 	}
 	phaseShower.show();
 }
