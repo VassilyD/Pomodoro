@@ -202,18 +202,6 @@ body  {
 	background-color: red;
 }
 
-#hourF {
-	left: calc(50% + 1.5px);
-}
-
-#minF {
-	left: calc(50% - 1px);
-}
-
-#secF {
-	left: calc(50% + 0.5px);
-}
-
 /* Merci benoit ^^ */
 input[type="text"] {
 	background-color: transparent;
