@@ -5,9 +5,6 @@ body  {
 	--bHeight: calc(var(--bWidth) / var(--nbOr));
 	--hSpace: calc(var(--bHeight) / var(--nbOr));
 	--hClock: calc(var(--bHeight) * 3 + var(--hSpace) * 1);
-	--workSetTop: calc(var(--hSpace) * 3 + var(--bHeight) * 2);
-	--breakSetTop: calc(var(--hSpace) * 3.5 + var(--bHeight) * 3);
-	--chillSetTop: calc(var(--hSpace) * 4 + var(--bHeight) * 4);
 }
 
 #play, #stop, #time, #next  {
@@ -162,23 +159,25 @@ input[type="text"] {
 }
 
 #workSet {
-	top: var(--workSetTop);
+	top: calc(var(--hSpace) * 3 + var(--bHeight) * 2);
 	background-color: orange;
 }
 
 #breakSet {
-	top: var(--breakSetTop);
+	top: calc(var(--hSpace) * 3.5 + var(--bHeight) * 3);
 	background-color: green;
 }
 
 #stopSet {
-	top: var(--chillSetTop);
+	top: calc(var(--hSpace) * 4 + var(--bHeight) * 4);
 	background-color: magenta;
 }
 
 #menuSwitch {
 	position: absolute;
 	right: 5vw;
+	height: 2.15vw;
+	line-height: 2.15vw;
 	top: calc(var(--hSpace) * 3 + var(--bHeight) * 2);
 	font-size: 2.5vw;
 	z-index: 100;
@@ -197,11 +196,11 @@ input[type="text"] {
 	padding: 0 1vw;
 	display: none;
 	background-color: whitesmoke;
-	font-size: calc(var(--hClock) / 26);
-	line-height: calc(var(--hClock) / 20);
+	font-size: calc(var(--hClock) / 15);
+	line-height: calc(var(--hClock) / 50);
 	z-index: 50;
 	overflow: auto;
-	border-radius: 2.5vw;
+	border-radius: 1.1vw;
 }
 
 #phaseShower {
@@ -215,8 +214,8 @@ input[type="text"] {
 
 .version {
 	position: absolute;
-	bottom: 2px;
-	right: 2vw;
+	bottom: 0.6vw;
+	right: 0.6vw;
 	margin: 0;
 	padding: 0;
 }
