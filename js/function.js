@@ -59,6 +59,8 @@ function hideClock() {
 function menuToggle() {
 	menu.toggle();
 	menuIcon.attr('class', (menuIcon.attr('class') == 'fa fa-info-circle')?'fa fa-times-circle':'fa fa-info-circle');
+	if(menu.css('display') == 'block') menuIcon.removeClass('text-shadow');
+	else menuIcon.addClass('text-shadow');
 }
 
 function clockSize() {

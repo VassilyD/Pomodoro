@@ -43,14 +43,17 @@ body  {
 
 #play:hover {
 	cursor: wait;
+    text-shadow: 0 0 5px whitesmoke;
 }
 
 #stop:hover {
 	cursor: not-allowed;
+    text-shadow: 0 0 5px whitesmoke;
 }
 
 #next:hover {
 	cursor: e-resize;
+    text-shadow: 0 0 5px whitesmoke;
 }
 
 #time, #time-now, #time-end {
@@ -63,18 +66,17 @@ body  {
 	border-radius: 0;
 	margin: 0;
 	padding: 0;
+	text-align: center;
 }
 
 #time-now {
 	top: calc(var(--hSpace) / 4);
 	font-size: calc(var(--hSpace) / 2);
-	text-align: center;
 }
 
 #time-end {
 	top: calc(var(--hSpace) * 1.25 + var(--bHeight));
 	font-size: calc(var(--hSpace) / 2);
-	text-align: center;
 }
 
 .staminaBox, .staminaText {
@@ -119,6 +121,7 @@ body  {
 	border: 1px solid black;
 	border-radius: 100%;
 	text-align: center;
+    box-shadow: 4px 4px 4px grey;
 }
 
 .clock-now {
@@ -147,6 +150,7 @@ body  {
 	width: 1.2vw;
 	position: absolute;
 	left: -0.6vw;
+    text-shadow: 2px 2px 4px grey;
 	/*color: blue;*/
 }
 /*
@@ -251,6 +255,10 @@ input[type="text"] {
 	letter-spacing: 1px;
 }
 
+input[type="text"]:hover {
+    text-shadow: 0 0 5px whitesmoke;
+}
+
 #workSet, #breakSet, #stopSet {
 	position: absolute;
 	left: 5vw;
@@ -290,6 +298,7 @@ input[type="text"] {
 
 #menuSwitch:hover {
 	cursor: help;
+    text-shadow: 0 0 5px green;
 }
 
 #menu {
@@ -331,11 +340,11 @@ input[type="text"] {
 	position: absolute;
 	left: calc(2.5vw - var(--bHeight) / 4);
 	font-size: calc(var(--bHeight) / 2);
-	overflow: hidden;
 }
 
 #selectWork:hover, #selectBreak:hover, #selectChill:hover {
 	cursor: crosshair;
+    text-shadow: 0 0 5px red;
 }
 
 #selectWork {
@@ -392,4 +401,20 @@ input[type="text"] {
 #toDoList-done {
 	background-color: green;
 	left: 66%;
+}
+
+.box-shadow {
+    box-shadow: 5px 5px 5px grey;
+}
+
+.text-shadow {
+    text-shadow: 5px 5px 5px grey;
+}
+
+#selectWork.text-shadow:hover, #selectBreak.text-shadow:hover, #selectChill.text-shadow:hover {
+    text-shadow: 5px 5px 5px grey, 0 0 5px red;
+}
+
+ #menuSwitch.text-shadow:hover {
+    text-shadow: 5px 5px 5px grey, 0 0 5px green;
 }

@@ -44,9 +44,28 @@ $(document).ready(function(){
 	stop.click(stopTimer);
 	nextStep.click(goNextStepPre);
 	menuIcon.click(menuToggle);
+	
+	play.mousedown(function(){play.removeClass('box-shadow')});
+	stop.mousedown(function(){stop.removeClass('box-shadow')});
+	nextStep.mousedown(function(){nextStep.removeClass('box-shadow')});
+	menuIcon.mousedown(function(){menuIcon.removeClass('text-shadow')});
+	
+	play.mouseup(function(){play.addClass('box-shadow')});
+	stop.mouseup(function(){stop.addClass('box-shadow')});
+	nextStep.mouseup(function(){nextStep.addClass('box-shadow')});
+	menuIcon.mouseup(function(){menuIcon.addClass('text-shadow')});
+	
 	timeSet.selectWork.click(function(){selectPhase('work')});
 	timeSet.selectBreak.click(function(){selectPhase('break')});
 	timeSet.selectChill.click(function(){selectPhase('chill')});
+	
+	timeSet.selectWork.mousedown(function(){timeSet.selectWork.removeClass('text-shadow')});
+	timeSet.selectBreak.mousedown(function(){timeSet.selectBreak.removeClass('text-shadow')});
+	timeSet.selectChill.mousedown(function(){timeSet.selectChill.removeClass('text-shadow')});
+
+	timeSet.selectWork.mouseup(function(){timeSet.selectWork.addClass('text-shadow')});
+	timeSet.selectBreak.mouseup(function(){timeSet.selectBreak.addClass('text-shadow')});
+	timeSet.selectChill.mouseup(function(){timeSet.selectChill.addClass('text-shadow')});
 
 	// Gestion des différents chronos
 	timeSet.work.change(function(){
