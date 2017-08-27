@@ -6,7 +6,7 @@ body  {
 	--bHeight: calc(var(--bWidth) / var(--ratio));
 	--hSpace: calc(var(--bHeight) / var(--ratio));
 	--hWorkZone: calc(var(--bHeight) * 3 + var(--hSpace) * 1);
-	--wTime: calc(65vw - (var(--bWidth) * 3 + var(--bHeight) * 2));
+	--wTime: calc(71vw - (var(--bWidth) * 3 + var(--bHeight) * 2));
 	--workSetTop: calc(var(--hSpace) * 3 + var(--bHeight) * 2);
 	--breakSetTop: calc(var(--hSpace) * 3.5 + var(--bHeight) * 3);
 	--chillSetTop: calc(var(--hSpace) * 4 + var(--bHeight) * 4);
@@ -53,12 +53,28 @@ body  {
 	cursor: e-resize;
 }
 
-#time {
+#time, #time-now, #time-end {
+	position: absolute;
 	top: var(--hSpace);
-	left: calc(20vw + var(--bWidth) * 2 + var(--bHeight));
+	left: calc(17vw + var(--bWidth) * 2 + var(--bHeight));
 	width: var(--wTime);
 	font-size: var(--bHeight);
 	background-color: beige;
+	border-radius: 0;
+	margin: 0;
+	padding: 0;
+}
+
+#time-now {
+	top: calc(var(--hSpace) / 4);
+	font-size: calc(var(--hSpace) / 2);
+	text-align: center;
+}
+
+#time-end {
+	top: calc(var(--hSpace) * 1.25 + var(--bHeight));
+	font-size: calc(var(--hSpace) / 2);
+	text-align: center;
 }
 
 .staminaBox, .staminaText {
@@ -107,22 +123,24 @@ body  {
 
 .clock-now {
 	left: calc(15vw + var(--bWidth) * 2);
+	background-color: burlywood;
 }
 
 .clock-chrono {
-	left: calc(25vw + var(--bWidth) * 2 + var(--bHeight) + var(--wTime));
+	left: calc(90vw - var(--bWidth) - var(--bHeight));
+	background-color: orange;
 }
 
 .clock-time {
 	--fontHeight: 1vw;
 	position: absolute;
 	top: calc(0px - var(--fontHeight) /* * 1.125*/);
-	left: 50%;
+	left: calc(50% - 0.5px);
 	width: 1px;
 	height: calc(var(--bHeight) / 2 + var(--fontHeight) /* * 1.125*/);
 	font-size: var(--fontHeight);
 	line-height: var(--fontHeight);
-    transform-origin: 0 100%;
+	transform-origin: bottom center;
 }
 
 .clock-time span {
@@ -283,7 +301,7 @@ input[type="text"] {
 	height: var(--hWorkZone);
 	padding: 0 1vw;
 	display: none;
-	background-color: whitesmoke;
+	background-color: burlywood;
 	font-size: calc(var(--hWorkZone) / 15);
 	line-height: calc(var(--hWorkZone) / 50);
 	z-index: 50;

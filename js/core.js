@@ -3,6 +3,8 @@ $(document).ready(function(){
 	stop = $('#stop');
 	nextStep = $('#next');
 	display = $('#time');
+	timeNow = $('#time-now');
+	timeEnd = $('#time-end');
 	headTitle = $('title');
 	timeSet = {
 		work: $('#workSet input'),
@@ -54,6 +56,7 @@ $(document).ready(function(){
 			tWork = this.value * MS_IN_MINUTE;
 			timing();
 			clock(dateFinChrono, clocksF);
+			timeEnd.text(styleTimeFull(dateFinChrono));
 		}
 		else {
 			tWork = this.value * MS_IN_MINUTE;
@@ -67,6 +70,7 @@ $(document).ready(function(){
 			tBreak = this.value * MS_IN_MINUTE;
 			timing();
 			clock(dateFinChrono, clocksF);
+			timeEnd.text(styleTimeFull(dateFinChrono));
 		}
 		else tBreak = this.value * MS_IN_MINUTE;
 	});
@@ -77,6 +81,7 @@ $(document).ready(function(){
 			tStop = this.value * MS_IN_MINUTE;
 			timing();
 			clock(dateFinChrono, clocksF);
+			timeEnd.text(styleTimeFull(dateFinChrono));
 		}
 		else tStop = this.value * MS_IN_MINUTE;
 	});

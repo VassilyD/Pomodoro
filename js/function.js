@@ -12,6 +12,8 @@ let stop = {};
 let nextStep = {};
 let timeSet = {};
 let display = {};
+let timeNow = {};
+let timeEnd = {};
 let staminaBar = {};
 let headTitle = {};
 let phaseShower = {};
@@ -34,6 +36,7 @@ let colorBar = [[0, 128, 0], [128, 128, 0], [255, 228, 0], [255, 128, 0], [255, 
 function mainLoop() {
 	tNow = Date.now();
 	clock(tNow, clocks);
+	timeNow.text(styleTimeFull(tNow));
 	if(isLooping && !isPaused) {
 		timing(tNow);
 		clock(dateFinChrono - tNow - MS_IN_HOUR, clocksF);
@@ -43,11 +46,13 @@ function mainLoop() {
 // Affiche l'horloge de fin de compteur
 function showClock() {
 	for(i = 0; i < 3; i++) clocksF[i].show();
+	timeEnd.show();
 }
 
 // Cache l'horloge de fin de compteur
 function hideClock() {
 	for(i = 0; i < 3; i++) clocksF[i].hide();
+	timeEnd.hide();
 }
 
 // Affiche / cache le menu
@@ -91,6 +96,7 @@ function switchPlay() {
 		dateFinChrono = (tempsRestant == 0)?(Date.now() + tWork):(Date.now() + tempsRestant);
 		timing();
 		clock(dateFinChrono, clocksF);
+		timeEnd.text(styleTimeFull(dateFinChrono));
 		showClock();
 		glowingPhase();
 		play.html('<i class="fa fa-pause">');
@@ -100,6 +106,7 @@ function switchPlay() {
 		dateFinChrono = Date.now() + tempsRestant;
 		timing();
 		clock(dateFinChrono, clocksF);
+		timeEnd.text(styleTimeFull(dateFinChrono));
 		showClock();
 		isPaused = false;
 		play.html('<i class="fa fa-pause">');
@@ -229,13 +236,24 @@ function goNextStep() {
 	hideClock();
 }
 
-// Renvoie une chaine de caractère du type 'MM : SS'
+// Renvoie une chaine de caractère du type (Hh) (MM') SS"
 function styleTime(time = 0) {
 	var d = new Date(time);
-	var secondes = ('00' + d.getSeconds()).slice(-2);
-	var minutes = d.getMinutes() + 60 * (d.getHours() - 1);
+	var secondes = ('00' + d.getUTCSeconds()).slice(-2);
+	var minutes = d.getUTCMinutes();
+	var heures = d.getUTCHours();
 	
-	return "" + ((minutes >= 10)?minutes:('0'+minutes)) + " : " + secondes;
+	return "" + ((heures > 0)?(heures + 'h '):'') + ((minutes > 0 || heures > 0)?(('0'+minutes).slice(-2) + "' "):'') + secondes + '"';
+}
+
+// Renvoie une chaine de caractère du type (Hh) (MM') SS"
+function styleTimeFull(time = Date.now()) {
+	var d = new Date(time);
+	var secondes = ('00' + d.getSeconds()).slice(-2);
+	var minutes = d.getMinutes();
+	var heures = d.getHours();
+	
+	return "" + ('0' + heures).slice(-2) + ' : ' + ('0' + minutes).slice(-2) + " : " + secondes + '';
 }
 
 // Change la couleur de la barre en fonction du % de temps et du nombre de cycle écoulé
