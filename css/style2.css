@@ -178,7 +178,7 @@ body  {
 	position: absolute;
 	top: 50%;
 	margin: auto;
-	transform-origin: left top;
+	transform-origin: center top;
 }
 
 #hour, #hourF {
