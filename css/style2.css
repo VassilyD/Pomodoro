@@ -31,7 +31,7 @@ body  {
 
 #stop {
 	top: var(--hSpace);
-	right: 5vw;
+	left: calc(95vw - var(--bWidth));
 	background-color: red;
 }
 
@@ -262,7 +262,7 @@ input[type="text"] {
 
 #menuSwitch {
 	position: absolute;
-	right: 5vw;
+	left: 92.85vw;
 	height: 2.15vw;
 	line-height: 2.15vw;
 	top: calc(var(--hSpace) * 3 + var(--bHeight) * 2);
@@ -275,10 +275,11 @@ input[type="text"] {
 }
 
 #menu {
+	--mWidth: calc(var(--bWidth) * 1.5);
 	position: absolute;
-	right: 5vw;
+	left: calc(93vw - var(--mWidth));
 	top: calc(var(--hSpace) * 3 + var(--bHeight) * 2);
-	width: calc(var(--bWidth) * 1.5);
+	width: var(--mWidth);
 	height: var(--hWorkZone);
 	padding: 0 1vw;
 	display: none;
