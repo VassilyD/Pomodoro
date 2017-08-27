@@ -5,6 +5,9 @@ body  {
 	--bHeight: calc(var(--bWidth) / var(--nbOr));
 	--hSpace: calc(var(--bHeight) / var(--nbOr));
 	--hClock: calc(var(--bHeight) * 3 + var(--hSpace) * 1);
+	--workSetTop: calc(var(--hSpace) * 3 + var(--bHeight) * 2);
+	--breakSetTop: calc(var(--hSpace) * 3.5 + var(--bHeight) * 3);
+	--chillSetTop: calc(var(--hSpace) * 4 + var(--bHeight) * 4);
 }
 
 #play, #stop, #time, #next  {
@@ -159,17 +162,17 @@ input[type="text"] {
 }
 
 #workSet {
-	top: calc(var(--hSpace) * 3 + var(--bHeight) * 2);
+	top: var(--workSetTop);
 	background-color: orange;
 }
 
 #breakSet {
-	top: calc(var(--hSpace) * 3.5 + var(--bHeight) * 3);
+	top: var(--breakSetTop);
 	background-color: green;
 }
 
 #stopSet {
-	top: calc(var(--hSpace) * 4 + var(--bHeight) * 4);
+	top: var(--chillSetTop);
 	background-color: magenta;
 }
 
