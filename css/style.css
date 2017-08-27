@@ -1,6 +1,9 @@
 body  {
 	background-color: beige;
 	--nbOr: calc(165580141 / 102334155);
+	--workSetTop: 45vh;
+	--breakSetTop: 60vh;
+	--chillSetTop: 75vh;
 }
 
 #play, #stop, #time, #next  {
@@ -151,17 +154,17 @@ input[type="text"] {
 }
 
 #workSet {
-	top: 45vh;
+	top: var(--workSetTop);
 	background-color: orange;
 }
 
 #breakSet {
-	top: 60vh;
+	top: var(--breakSetTop);
 	background-color: green;
 }
 
 #stopSet {
-	top: 75vh;
+	top: var(--chillSetTop);
 	background-color: magenta;
 }
 
@@ -194,6 +197,7 @@ input[type="text"] {
 #phaseShower {
 	position: absolute;
 	left: 16vw;
+	top: var(--workSetTop);
 	display: none;
 	height: 10vh;
 	line-height: 10vh;

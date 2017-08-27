@@ -5,6 +5,7 @@ body  {
 	--bHeight: calc(var(--bWidth) / var(--nbOr));
 	--hSpace: calc(var(--bHeight) / var(--nbOr));
 	--hClock: calc(var(--bHeight) * 3 + var(--hSpace) * 1);
+	--wTime: calc(65vw - (var(--bWidth) * 3 + var(--bHeight) * 2));
 	--workSetTop: calc(var(--hSpace) * 3 + var(--bHeight) * 2);
 	--breakSetTop: calc(var(--hSpace) * 3.5 + var(--bHeight) * 3);
 	--chillSetTop: calc(var(--hSpace) * 4 + var(--bHeight) * 4);
@@ -53,8 +54,8 @@ body  {
 
 #time {
 	top: var(--hSpace);
-	left: calc(15vw + var(--bWidth) * 2);
-	width: calc(100vw - (25vw + var(--bWidth) * 3));
+	left: calc(20vw + var(--bWidth) * 2 + var(--bHeight));
+	width: var(--wTime);
 	font-size: var(--bHeight);
 	background-color: beige;
 }
@@ -95,47 +96,121 @@ body  {
 
 .clock {
 	position: absolute;
-	top: calc(var(--hSpace) * 3 + var(--bHeight) * 2);
-	left: calc(50vw - var(--hClock) / 2);
-	width: var(--hClock);
-	height: var(--hClock);
-	border: 2px solid black;
+	top: var(--hSpace);
+	width: var(--bHeight);
+	height: var(--bHeight);
+	border: 1px solid black;
 	border-radius: 100%;
 	text-align: center;
+}
+
+.clock-now {
+	left: calc(15vw + var(--bWidth) * 2);
+}
+
+.clock-chrono {
+	left: calc(25vw + var(--bWidth) * 2 + var(--bHeight) + var(--wTime));
+}
+
+.clock-time {
+	position: absolute;
+	top: calc(50% - var(--bHeight) / 2 - 1vw);
+	left: 50%;
+	width: 1px;
+	height: calc(var(--bHeight) / 2 + 1vw);
+	font-size: 1vw;
+	line-height: 1vw;
+    transform-origin: 0 100%;
+}
+
+.clock-time span {
+	width: 1.2vw;
+	position: absolute;
+	left: -0.6vw;
+}
+
+.clock .cinq {
+    transform: rotate(30deg);
+}
+
+.clock .dix {
+    transform: rotate(60deg);
+}
+
+.clock .quinze {
+    transform: rotate(90deg);
+}
+
+.clock .vingt {
+    transform: rotate(120deg);
+}
+
+.clock .vingt-cinq {
+    transform: rotate(150deg);
+}
+
+.clock .trente {
+    transform: rotate(180deg);
+}
+
+.clock .trente-cinq {
+    transform: rotate(210deg);
+}
+
+.clock .quarante {
+    transform: rotate(240deg);
+}
+
+.clock .quarante-cinq {
+    transform: rotate(270deg);
+}
+
+.clock .cinquante {
+    transform: rotate(300deg);
+}
+
+.clock .cinquante-cinq {
+    transform: rotate(330deg);
 }
 
 #hour, #hourF, #min, #minF, #sec, #secF {
 	position: absolute;
 	top: 50%;
-	left: 50%;
 	margin: auto;
 	transform-origin: left top;
 }
 
 #hour, #hourF {
-	width: 4px;
+	width: 3px;
+	left: calc(50% - 1.5px);
 	height: 25%;
+	background-color: black;
 }
 
 #min, #minF {
 	width: 2px;
+	left: calc(50% - 1px);
 	height: 35%;
+	background-color: blue;
 }
 
 #sec, #secF {
 	width: 1px;
+	left: calc(50% - 0.5px);
 	height: 45%;
-}
-
-#hour, #min, #sec {
-	background-color: black;
-	opacity: 0.7;
-	z-index: 100;
-}
-
-#hourF, #minF, #secF {
 	background-color: red;
-	z-index: 50;
+}
+
+#hourF {
+	left: calc(50% + 1.5px);
+}
+
+#minF {
+	left: calc(50% - 1px);
+}
+
+#secF {
+	left: calc(50% + 0.5px);
 }
 
 /* Merci benoit ^^ */

@@ -1,5 +1,6 @@
 const MS_IN_SECONDE = 1000;
 const MS_IN_MINUTE = 60 * MS_IN_SECONDE;
+const MS_IN_HOUR = 60 * MS_IN_MINUTE;
 const ANIM_SPEED = 250;
 
 // Q1 : Est-ce propre de déclarer et initialiser ainsi 2 variables (voir plus)?
@@ -19,6 +20,7 @@ let menu = {};
 let clockDiv = {};
 let clocks = [];
 let clocksF = [];
+let tNow = Date.now();
 let tWork = 25 * MS_IN_MINUTE;
 let tBreak = 5 * MS_IN_MINUTE;
 let tStop = 30 * MS_IN_MINUTE;
@@ -30,8 +32,12 @@ let colorBar = [[0, 128, 0], [128, 128, 0], [255, 228, 0], [255, 128, 0], [255, 
 
 // La seule vrai boucle ^^
 function mainLoop() {
-	clock();
-	if(isLooping && !isPaused) timing();
+	tNow = Date.now();
+	clock(tNow, clocks);
+	if(isLooping && !isPaused) {
+		timing(tNow);
+		clock(dateFinChrono - tNow - MS_IN_HOUR, clocksF);
+	}
 }
 
 // Affiche l'horloge de fin de compteur
@@ -253,8 +259,8 @@ function setProgressBarColor(tmp) {
 }
 
 // Actualise le temps restant et la barre de progression
-function timing() {
-	tempsRestant = (dateFinChrono - Date.now());
+function timing(tNow = Date.now()) {
+	tempsRestant = (dateFinChrono - tNow);
 	display.html(styleTime(tempsRestant));
 	headTitle.text(styleTime(tempsRestant) + ' Pomodoro');
 
