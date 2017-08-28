@@ -155,7 +155,12 @@ body  {
 	border: 1px solid black;
 	border-radius: 100%;
 }
-
+.clock-time span {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 1.2vw;
+}
 .clock .cinq {
     transform: rotate(30deg);
 }
@@ -181,7 +186,7 @@ body  {
 
 .clock .trente {
     transform: rotate(180deg);
-	height: calc(var(--wClock) / 2 + 1px);
+	height: calc(var(--wClock) / 2 + 0.5px);
 }
 
 .clock .trente-cinq {
