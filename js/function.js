@@ -97,7 +97,7 @@ function switchPlay() {
 	if(!isLooping) {
 		dateFinChrono = (tempsRestant == 0)?(Date.now() + tWork):(Date.now() + tempsRestant);
 		timing();
-		clock(dateFinChrono, clocksF);
+		clock(tempsRestant - MS_IN_HOUR, clocksF);
 		timeEnd.text(styleTimeFull(dateFinChrono));
 		showClock();
 		glowingPhase();
@@ -107,7 +107,7 @@ function switchPlay() {
 	else if(isPaused) {
 		dateFinChrono = Date.now() + tempsRestant;
 		timing();
-		clock(dateFinChrono, clocksF);
+		clock(tempsRestant - MS_IN_HOUR, clocksF);
 		timeEnd.text(styleTimeFull(dateFinChrono));
 		showClock();
 		isPaused = false;

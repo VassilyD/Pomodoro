@@ -11,16 +11,15 @@ body  {
 	--breakSetTop: calc(var(--hSpace) * 3.5 + var(--bHeight) * 3);
 	--chillSetTop: calc(var(--hSpace) * 4 + var(--bHeight) * 4);
 }
-
-#play, #stop, #time, #next  {
+.myButton {
 	position: absolute;
 	height: var(--bHeight);
 	width: var(--bWidth);
-	font-size: calc(var(--bHeight) / 2);
 	text-align: center;
-	line-height: var(--bHeight);
 	overflow: hidden;
 	border-radius: var(--bHeight);
+	font-size: calc(var(--bHeight) / 2);
+	line-height: var(--bHeight);
 }
 
 #play {
@@ -58,25 +57,28 @@ body  {
 
 #time, #time-now, #time-end {
 	position: absolute;
-	top: var(--hSpace);
 	left: calc(17vw + var(--bWidth) * 2 + var(--bHeight));
 	width: var(--wTime);
-	font-size: var(--bHeight);
 	background-color: beige;
-	border-radius: 0;
-	margin: 0;
-	padding: 0;
 	text-align: center;
+}
+
+#time {
+	top: var(--hSpace);
+	font-size: var(--bHeight);
+	line-height: var(--bHeight);
 }
 
 #time-now {
 	top: calc(var(--hSpace) / 4);
 	font-size: calc(var(--hSpace) / 2);
+	line-height: calc(var(--hSpace) / 2);
 }
 
 #time-end {
 	top: calc(var(--hSpace) * 1.25 + var(--bHeight));
 	font-size: calc(var(--hSpace) / 2);
+	line-height: calc(var(--hSpace) / 2);
 }
 
 .staminaBox, .staminaText {
@@ -94,8 +96,6 @@ body  {
 .staminaText {
 	left: 20vw;
 	width: 60vw;
-	margin: 0;
-	padding: 0;
 	font-size: var(--bHeight);
 	line-height: var(--bHeight);
 	z-index: 100;
@@ -150,7 +150,7 @@ body  {
 	width: 1.2vw;
 	position: absolute;
 	left: -0.6vw;
-    text-shadow: 2px 2px 4px grey;
+    text-shadow: 5px 5px 5px grey;
 	/*color: blue;*/
 }
 /*
@@ -260,15 +260,9 @@ input[type="text"]:hover {
 }
 
 #workSet, #breakSet, #stopSet {
-	position: absolute;
 	left: 5vw;
-	width: var(--bWidth);
-	height: var(--bHeight);
 	line-height: calc((var(--bHeight)) / 2.2 );
-	text-align: center;
 	font-size: calc((var(--bHeight)) / 2.75);
-	overflow: auto;
-	border-radius: var(--bHeight);
 }
 
 #workSet {
