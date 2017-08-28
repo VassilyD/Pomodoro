@@ -126,12 +126,12 @@ body  {
 }
 
 .clock-now {
-	left: calc(15vw + var(--bWidth) * 2);
+	left: calc(15vw + var(--bWidth) * 2 - var(--fontHeight));
 	background-color: burlywood;
 }
 
 .clock-chrono {
-	left: calc(90vw - var(--bWidth) - var(--bHeight));
+	left: calc(90vw - var(--bWidth) - var(--wClock) + var(--fontHeight));
 	background-color: orange;
 }
 
