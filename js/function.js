@@ -240,12 +240,17 @@ function goNextStep() {
 
 // Renvoie une chaine de caractère du type (Hh) (MM') SS"
 function styleTime(time = 0) {
+	if(typeof time !== 'number') throw 'StyleTime : bad type, should be a number';
+	if(time % 1 != 0) throw 'StyleTime : bad number, should be an integer';
+	if(time <= 0) return '00"';
 	var d = new Date(time);
 	var secondes = ('00' + d.getUTCSeconds()).slice(-2);
 	var minutes = d.getUTCMinutes();
 	var heures = d.getUTCHours();
 	
-	return "" + ((heures > 0)?(heures + 'h '):'') + ((minutes > 0 || heures > 0)?(('0'+minutes).slice(-2) + "' "):'') + secondes + '"';
+	return "" + ((heures > 0) ? (heures + 'h ') : '')
+			 + ((minutes > 0 || heures > 0) ? (('0' + minutes).slice(-2) + "' ") : '')
+			 + secondes + '"';
 }
 
 // Renvoie une chaine de caractère du type (Hh) (MM') SS"
