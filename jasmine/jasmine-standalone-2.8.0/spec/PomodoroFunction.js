@@ -34,4 +34,28 @@ describe("styleTime", function() {
 describe('styleTimeFull', function() {
 
 	var timeTest = 1510571532295;
+
+	it("Should format time from timestamp (int)", function() {
+		expect(styleTimeFull(timeTest)).toBe("12 : 12 : 12");
+	});
+
+	it("Should return 00\" from negative number", function() {
+		expect(styleTimeFull(-10)).toBe("00 : 00 : 00");
+	});
+
+	it("Should return an error from float", function() {
+		expect(styleTimeFull.bind(null, -10.56)).toThrow("StyleTime : bad number, should be an integer");
+	});
+
+	it("Shouldn't format time from null", function() {
+		expect(styleTimeFull.bind(null, null)).toThrow("StyleTime : bad type, should be a number");
+	});
+
+	it("Shouldn't format time from string", function() {
+		expect(styleTimeFull.bind(null, 'someString')).toThrow("StyleTime : bad type, should be a number");
+	});
+
+	it("Shouldn't format time from Object", function() {
+		expect(styleTime.bind(null, {truc: 'cheum'})).toThrow("StyleTime : bad type, should be a number");
+	});
 });

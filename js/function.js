@@ -255,6 +255,9 @@ function styleTime(time = 0) {
 
 // Renvoie une chaine de caractère du type (Hh) (MM') SS"
 function styleTimeFull(time = Date.now()) {
+	if(typeof time !== 'number') throw 'StyleTime : bad type, should be a number';
+	if(time % 1 != 0) throw 'StyleTime : bad number, should be an integer';
+	if(time <= 0) return '00 : 00 : 00';
 	var d = new Date(time);
 	var secondes = ('00' + d.getSeconds()).slice(-2);
 	var minutes = d.getMinutes();
