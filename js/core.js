@@ -38,7 +38,10 @@ $(document).ready(function(){
 	}
 
 	hideClock();
-	setTimeout(function(){setInterval(mainLoop, 1000)}, Date.now() % (MS_IN_SECONDE+1));
+	setTimeout(function(){
+		mainLoop();
+		setInterval(mainLoop, 1000)
+		}, 1000 - Date.now() % (MS_IN_SECONDE));
 	
 	play.click(switchPlay);
 	stop.click(stopTimer);
